@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>オイクラ（仮）</title>
 </head>
@@ -23,10 +23,85 @@
     </nav>
 
     <main>
+        <div class="h5">総額計算</div>
         <div class="container">
+            <div class="row">
+                <div class="col-sm-3 border border-primary">契約タイプ</div>
+                <div class="col-sm-9 border border-primary">持ち家　　　　　賃貸</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 border border-primary">物件タイプ</div>
+                <div class="col-sm-9 border border-primary">戸建て　　　　　マンション</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 border border-primary">各種費用</div>
+                <div class="col-sm-9 border border-primary">
+                    物件価格「　　　　　　　　　　」円<br>
+                    修繕積立「　　　　　　　　　　」円/月<br>
+                    管理費　「　　　　　　　　　　」円/月<br>
+                    その他　「　　　　　　　　　　」円/月<br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 border border-primary">ローン借入</div>
+                <div class="col-sm-9 border border-primary">
+                    有　　　　　無<br>
+                    借入額　「　　　　　　　　　　」円/月<br>
+                    金利　　「　　　　　　　　　　」%<br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 border border-primary">頭金</div>
+                <div class="col-sm-9 border border-primary">　　　　「　　　　　　　　　　」円</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 border border-primary">返済期間</div>
+                <div class="col-sm-9 border border-primary">　　　　「　　　　　　　　　　」年</div>
+            </div>
+        </div>
+        <div class="form-row text-center">
+            <div class="col-12 text-center">
+                <button type="button" class="btn btn-info">シミュレーション実行</button>
+            </div>
+        </div>
+        <div class="h5">総額内訳</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">各種費用<br>物件価格</th>
+                    <th scope="col">ローン利息</th>
+                    <th scope="col">消費税</th>
+                    <th scope="col">総額</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">物件1</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">物件2</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="h5">支払い金額推移</div>
+        <div class="form-row text-center">
+            <div class="col-12 text-center">
+                <button type="button" class="btn btn-info">シミュレーション結果を保存</button>
+            </div>
+        </div>
+
             {% block content %}
             {% endblock %}
-        </div>
     </main>
 
     <footer class="py-2 bg-dark">
