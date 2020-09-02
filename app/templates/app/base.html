@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="container">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -25,18 +25,18 @@
     <main>
         <div class="h5">総額計算</div>
         <!-- <table class="table" width="1000"> -->
-        <table class="table" border="2">
+        <table class="container" border="2" width="200px">
             <tbody>
                 <tr>
-                    <th scope="row">契約タイプ</th>
-                    <td>持ち家　　　　　　　　　　　　賃貸</td>
+                    <th scope="row" class="bg-info">契約タイプ</th>
+                    <td height="" width="">持ち家　　　　　　　　　　　　賃貸</td>
                 </tr>
                 <tr>
-                    <th scope="row">物件タイプ</th>
+                    <th scope="row" class="bg-info">物件タイプ</th>
                     <td>戸建て　　　　　　　　　　　　マンション</td>
                 </tr>
                 <tr>
-                    <th scope="row">各種費用</th>
+                    <th scope="row" class="bg-info">各種費用</th>
                     <td>物件価格「　　　　　　　　　　」円<br>
                         修繕積立「　　　　　　　　　　」円/月<br>
                         管理費　「　　　　　　　　　　」円/月<br>
@@ -44,7 +44,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row">ローン借入</th>
+                    <th scope="row" class="bg-info">ローン借入</th>
                     <td>有　　　　　　　　　　　　　　無<br>
                     　　　　「　　　　　　　　　　」円<br>
                     　　　　「　　　　　　　　　　」％<br>
@@ -52,12 +52,12 @@
                     </借入額>
                 </tr>
                 <tr>
-                    <th scope="row">頭金</th>
+                    <th scope="row" class="bg-info">頭金</th>
                     <td>　　　　「　　　　　　　　　　」円</td>
 
                 </tr>
                 <tr>
-                    <th scope="row">返済期間</th>
+                    <th scope="row" class="bg-info">返済期間</th>
                     <td>　　　　「　　　　　　　　　　」年</td>
                 </tr>
             </tbody>
@@ -69,16 +69,16 @@
             </div>
         </div>
         <div class="h5">総額内訳</div>
-        <table class="table" border="2">
+        <table class="container" border="2">
             <tbody>
-                <tr>
+                <tr class="bg-warning">
                     <th scope="row" rowspan="2"></th>
                     <th scope="row" colspan="4">各種費用</th>
                     <th scope="row" rowspan="2">ローン利息</th>
                     <th scope="row" rowspan="2">消費税</th>
                     <th scope="row" rowspan="2">総額</th>
                 </tr>
-                <tr>
+                <tr class="bg-warning">
                     <th scope="row">物件価格</th>
                     <th scope="row">修繕積立</th>
                     <th scope="row">管理費</th>
@@ -119,7 +119,7 @@
             {% endblock %}
     </main>
 
-    <footer class="py-2 bg-dark">
+    <footer class="py-2 bg-secondary">
         <p class="m-0 text-center text-white">Copyright &copy; Kitatora 2020</p>
     </footer>
 
