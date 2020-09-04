@@ -18,105 +18,30 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">ホーム</a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">プロフィール</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">ログアウト</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">サインアップ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:8000/accounts/profile">ログイン</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
 
     <main>
-        <div class="h5">総額計算</div>
-        <!-- <table class="table" width="1000"> -->
-        <table class="container" border="2" width="200px">
-            <tbody>
-                <tr>
-                    <th scope="row" class="bg-info">契約タイプ</th>
-                    <td height="" width="">持ち家　　　　　　　　　　　　賃貸</td>
-                </tr>
-                <tr>
-                    <th scope="row" class="bg-info">物件タイプ</th>
-                    <td>戸建て　　　　　　　　　　　　マンション</td>
-                </tr>
-                <tr>
-                    <th scope="row" class="bg-info">各種費用</th>
-                    <td>物件価格「　　　　　　　　　　」円<br>
-                        修繕積立「　　　　　　　　　　」円/月<br>
-                        管理費　「　　　　　　　　　　」円/月<br>
-                        その他　「　　　　　　　　　　」円/月
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="bg-info">ローン借入</th>
-                    <td>有　　　　　　　　　　　　　　無<br>
-                    　　　　「　　　　　　　　　　」円<br>
-                    　　　　「　　　　　　　　　　」％<br>
-                    　　　　「　　　　　　　　　　」円/月
-                    </借入額>
-                </tr>
-                <tr>
-                    <th scope="row" class="bg-info">頭金</th>
-                    <td>　　　　「　　　　　　　　　　」円</td>
-
-                </tr>
-                <tr>
-                    <th scope="row" class="bg-info">返済期間</th>
-                    <td>　　　　「　　　　　　　　　　」年</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="form-row text-center">
-            <div class="col-12 text-center">
-                <button type="button" class="btn btn-info">シミュレーション実行</button>
-            </div>
-        </div>
-        <div class="h5">総額内訳</div>
-        <table class="container" border="2">
-            <tbody>
-                <tr class="bg-warning">
-                    <th scope="row" rowspan="2"></th>
-                    <th scope="row" colspan="4">各種費用</th>
-                    <th scope="row" rowspan="2">ローン利息</th>
-                    <th scope="row" rowspan="2">消費税</th>
-                    <th scope="row" rowspan="2">総額</th>
-                </tr>
-                <tr class="bg-warning">
-                    <th scope="row">物件価格</th>
-                    <th scope="row">修繕積立</th>
-                    <th scope="row">管理費</th>
-                    <th scope="row">その他</th>
-                </tr>
-                <tr>
-                    <th scope="row">物件1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row">物件2</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="h5">支払い金額推移</div>
-        <div class="form-row text-center">
-            <div class="col-12 text-center">
-                <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt="">
-            </div>
-            <button type="button" class="btn btn-info">シミュレーション結果を保存</button>
-        </div>
-
+        <div class="container">
             {% block content %}
             {% endblock %}
+        </div>
     </main>
 
     <footer class="py-2 bg-secondary">
