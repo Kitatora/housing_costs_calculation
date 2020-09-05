@@ -6,8 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
-    template_name = "app/calculation.html"
+    template_name = 'app/calculation.html'
     login_url = '/accounts/login/'
 
-class AbtView(View):
-    template_name = "/accounts/login/"
+class AbtView(TemplateView):
+    template_name = 'about.html'
