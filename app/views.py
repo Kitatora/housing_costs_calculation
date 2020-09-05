@@ -10,4 +10,4 @@ class IndexView(LoginRequiredMixin, TemplateView):
     login_url = '/accounts/login/'
 
 class AbtView(TemplateView):
-    template_name = 'about.html'
+    template_name = 'app/about.html'
