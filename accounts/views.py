@@ -9,11 +9,6 @@ from allauth.account import views
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user_data = CustomUser.objects.get(id=request.user.id)
-
-        return render(request, 'accounts/profile.html', {
-            'user_data': user_data,
-        })
-
         return render(request, 'accounts/profile.html', {
             'user_data': user_data,
         })
@@ -36,6 +31,7 @@ class ProfileEditView(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         form = ProfileForm(request.POST or None)
+        print(request.POST)
         if form.is_valid():
             user_data = CustomUser.objects.get(id=request.user.id)
             user_data.first_name = form.cleaned_data['first_name']
