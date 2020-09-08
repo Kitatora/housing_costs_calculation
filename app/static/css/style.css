@@ -53,12 +53,12 @@ main {
 
 .form_wrap {
     display: grid;
-    gap: 16px;
+    gap: 2px;
 }
-
+ 
 .form_wrap-2 {
     grid-template-columns: repeat(2, 1fr);
-}
+} 
 
 .form-control:focus {
     box-shadow: none;
@@ -84,10 +84,18 @@ main {
     width: 100%;
 }
 
+.radio_position{
+    margin: 1em;
+}
+
 .form-label-group {
-    margin-bottom: 1rem;
+    margin: 1rem;
 }
 
 .form-label-group input {
     border-radius: 2rem;
+}
+
+.radio{
+    margin: 10px 20px;
 }

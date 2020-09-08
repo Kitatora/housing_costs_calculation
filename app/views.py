@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from app.form import OwnHouseForm
+from app.forms import OwnHouseForm
 
 
 
@@ -20,8 +20,8 @@ class TopView(View):
             MMF_info = form.cleaned_data['MMF']
             OMF_info = form.cleaned_data['OMF']
             loan_info = form.cleaned_data['loan']
-            # interest_info = form.cleaned_data['interest']/100
-            # down_info = form.cleaned_data['down']
+            interest_info = form.cleaned_data['interest']/100
+            down_info = form.cleaned_data['down']
             repayment_info = form.cleaned_data['repayment']
             m_repayment = repayment_info*12
             m_loan = loan_info*12
