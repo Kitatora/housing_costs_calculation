@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -27,14 +27,14 @@ class TopView(View):
             m_loan = loan_info*12
 
         return render(request, 'app/calculation.html', {
-            'form': form, #これがないと入力フォームのデータが計算のたびに消える
-            'total_price' : price_info, #物件価格総額
-            'total_RRF' : RRF_info*(repayment_info*120), #修繕積立総額
-            'total_MMF' : MMF_info*(repayment_info*120), #管理費総額
-            'total_OMF' : OMF_info*(repayment_info*120), #その他総額
+            'form': form,
+            'total_price' : price_info,
+            'total_RRF' : RRF_info*(repayment_info*120), 
+            'total_MMF' : MMF_info*(repayment_info*120), 
+            'total_OMF' : OMF_info*(repayment_info*120), 
             'total_interest' : (price_info*loan_info/12*(1+m_loan)**m_repayment/((1+m_loan)**m_repayment-1)*m_loan)-price_info, #ローン利息
-            'vat' : price_info*0.1, #消費税
-            'Miscellaneous' : price_info*0.001, #
+            'vat' : price_info*0.1,
+            'Miscellaneous' : price_info*0.001, 
             'Miscellaneous_if_loan' : price_info*0.0025, #ローン みずほ銀行ローンサイト諸経費より
             'property_tax' : price_info*0.004*(repayment_info*120), #固定資産税
         })
