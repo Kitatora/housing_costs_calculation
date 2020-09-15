@@ -4,59 +4,62 @@
 {% block content %}
 
 <div class="h5 mt-5">総額計算</div>
-<table class="container" border="2" width="200px">
-    <form method="post">
+<form method="post">
+    <table class="container" border="2" width="200px">
         {% csrf_token %}
-        <tbody>
-            </div>
-            <tr>
-                <th scope="row" class="bg-info text-center">契約タイプ</th>
-                <td class="radio formpost">
-                    <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
-                    <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" class="bg-info text-center">物件タイプ</th>
-                <td class="radio formpost">
-                    <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
-                    <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" class="bg-info text-center">各種費用</th>
-                <td class="data ml-4 mr-5 my-3 formpost">
-                    物件価格（円）　　{% render_field form.price class="form-control" placeholder="物件価格" min="100" %}<br>
-                    修繕積立（円/月）{% render_field form.RRF class="form-control" placeholder="修繕積立" %}<br>
-                    管理費（円/月）　{% render_field form.MMF class="form-control" placeholder="管理費" %}<br>
-                    その他（円/月）　{% render_field form.OMF class="form-control" placeholder="その他" %}
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" class="bg-info text-center">ローン借入</th>
-                <td class="radio formpost">
-                    <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
-                    <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
-                    借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
-                    年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
-                </有>
-            </tr>
-            <tr>
-                <th scope="row" class="bg-info text-center">頭金</th>
-                <td class="ml-4 mr-5 my-3 formpost">頭金（円）　　{% render_field form.down class="form-control" placeholder="頭金" %}</td>
-            </tr>
-            <tr>
-                <th scope="row" class="bg-info text-center">返済期間</th> 
-                <td class="ml-4 mr-5 my-3 formpost">返済期間（年）　{% render_field form.repayment class="form-control" placeholder="返済期間" %}</td>
-            </tr>
-        </tbody>
-            <div class="form-row text-center">
-                <div class="col-12 text-center mt-3">
-                    <button type="submit" class="btn btn-info mt-3 mb-5">シミュレーション実行</button>
-                </div>
-            </div>
-    </form>
-</table>
+        <script type="text/javascript" src="app/static/javascript/number.js">
+          <tbody>
+              <tr>
+                  <th scope="row" class="bg-info text-center">契約タイプ</th>
+                  <td class="radio formpost">
+                      <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
+                      <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
+                  </td>
+              </tr>
+              <tr>
+                  <th scope="row" class="bg-info text-center">物件タイプ</th>
+                  <td class="radio formpost">
+                      <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
+                      <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
+                  </td>
+              </tr>
+              <tr>
+                  <th scope="row" class="bg-info text-center">各種費用</th>
+                  <td class="data ml-4 mr-5 my-3">
+                      <p>物件価格（円）</p>
+                      <div class="formpost" id="numdata" type="text">{% render_field form.price id="numdata" class="form-control" placeholder="物件価格" %}</div>
+                      <p>修繕積立（円/月）</p>
+                      <div class="formpost">{% render_field form.RRF class="form-control disabled" placeholder="修繕積立" %}</div>
+                      <p>管理費（円/月）</p>
+                      <div class="formpost">{% render_field form.MMF class="form-control disabled" placeholder="管理費" %}</div>
+                      <p>その他（円/月）</p>
+                      <div class="formpost">{% render_field form.OMF class="form-control disabled" placeholder="その他" %}</div>
+                  </td>
+              </tr>
+              <tr>
+                  <th scope="row" class="bg-info text-center">ローン借入</th>
+                  <td class="radio formpost">
+                      <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
+                      <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
+                      借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
+                      年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
+                  </td>
+              </tr>
+              <tr>
+                  <th scope="row" class="bg-info text-center">頭金</th>
+                  <td class="ml-4 mr-5 my-3 formpost">頭金（円）　　{% render_field form.down class="form-control" placeholder="頭金" %}</td>
+              </tr>
+              <tr>
+                  <th scope="row" class="bg-info text-center">返済期間</th> 
+                  <td class="ml-4 mr-5 my-3 formpost">返済期間（年）　{% render_field form.repayment class="form-control" placeholder="返済期間" %}</td>
+              </tr>
+          </tbody>
+        </script>   
+    </table>
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-info mt-3 mb-5">シミュレーション実行</button>
+    </div>
+</form>
     
 <div class="h5 mt-5">総額内訳</div>
 <table class="container text-center" border="2">
@@ -76,13 +79,13 @@
         </tr>
         <tr class="mx-4 my-4">
             <th scope="row">物件1</th>
-            <td class="mx-4 my-4">{{ price_info }}</td>
-            <td class="mx-4 my-4"></td>
-            <td class="mx-4 my-4"></td>
-            <td class="mx-4 my-4"></td>
-            <td class="mx-4 my-4"></td>
-            <td class="mx-4 my-4"></td>
-            <td class="mx-4 my-4"></td>
+            <td class="mx-4 my-4">{{ total_price }}</td>
+            <td class="mx-4 my-4">{{ total_RRF }}</td>
+            <td class="mx-4 my-4">{{ total_MMF }}</td>
+            <td class="mx-4 my-4">{{ total_OMF }}</td>
+            <td class="mx-4 my-4">{{ total_interest }}</td>
+            <td class="mx-4 my-4">{{ Miscellaneous }}</td>
+            <td class="mx-4 my-4">{{ property_tax }}</td>
         </tr>
         <tr>
             <th scope="row">物件2</th>
@@ -100,9 +103,57 @@
 <div class="h5 mt-5">支払い金額推移</div>
 <div class="form-row text-center">
     <div class="col-12 text-center mt-3">
-        <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt="">
-        <button type="button" class="btn btn-info btn-block btn-lg mt-3 mb-5">シミュレーション結果を保存</button>
+        <!-- <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt=""> -->
+        <canvas id="myLineChart"></canvas>
+        
+        <button type="button" class="btn btn-info mt-3 mb-5">シミュレーション結果を保存</button>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    
+      <script>
+      var ctx = document.getElementById("myLineChart");
+      var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: {{ 
+              
+          }}
+          //  ['8月1日', '8月2日', '8月3日', '8月4日', '8月5日', '8月6日', '8月7日'],
+          datasets: [
+            {
+              label: '最高気温(度）',
+              data: [35, 34, 37, 35, 34, 35, 34, 25],
+              borderColor: "rgba(255,0,0,1)",
+              backgroundColor: "rgba(0,0,0,0)"
+            },
+            {
+              label: '最低気温(度）',
+              data: [25, 27, 27, 25, 26, 27, 25, 21],
+              borderColor: "rgba(0,0,255,1)",
+              backgroundColor: "rgba(0,0,0,0)"
+            }
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: '気温（8月1日~8月7日）'
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                suggestedMax: 40,
+                suggestedMin: 0,
+                stepSize: 10,
+                callback: function(value, index, values){
+                  return  value +  '度'
+                }
+              }
+            }]
+          },
+        }
+      });
+      </script>
 
 {%  endblock %}

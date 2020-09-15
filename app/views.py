@@ -8,7 +8,19 @@ from app.forms import OwnHouseForm
 
 class TopView(View):
     def get(self, request, *args, **kwargs):
-        form = OwnHouseForm(request.POST or None)
+        form = OwnHouseForm(
+            request.POST or None,
+            initial={
+                'price': "0",
+                'RRF': "0",
+                'MMF': "0",
+                'OMF': "0",
+                'loan': "0",
+                'interest': "0",
+                'down': "0",
+                'repayment': "0",
+            }
+        )
         return render(request, 'app/calculation.html', {
             'form': form
         })
@@ -25,6 +37,24 @@ class TopView(View):
             repayment_info = form.cleaned_data['repayment']
             m_repayment = repayment_info*12
             m_loan = loan_info*12
+        else:
+            print(form.errors)
+            return redirect('about')
+        
+        form = OwnHouseForm(
+            request.POST or None,
+            initial={
+                'price': "0",
+                'RRF': "0",
+                'MMF': "0",
+                'OMF': "0",
+                'loan': "0",
+                'interest': "0",
+                'down': "0",
+                'repayment': "0",
+            }
+        )
+        print(form)
 
         return render(request, 'app/calculation.html', {
             'form': form,
@@ -32,7 +62,8 @@ class TopView(View):
             'total_RRF' : RRF_info*(repayment_info*120), 
             'total_MMF' : MMF_info*(repayment_info*120), 
             'total_OMF' : OMF_info*(repayment_info*120), 
-            'total_interest' : (price_info*loan_info/12*(1+m_loan)**m_repayment/((1+m_loan)**m_repayment-1)*m_loan)-price_info, #ローン利息
+            # 'total_interest' : (price_info*loan_info/12*(1+m_loan)**m_repayment/((1+m_loan)**m_repayment-1)*m_loan)-price_info, #ローン利息
+            'total_interest' : price_info*loan_info/12*(1+m_loan)**m_repayment-price_info, #ローン利息
             'vat' : price_info*0.1,
             'Miscellaneous' : price_info*0.001, 
             'Miscellaneous_if_loan' : price_info*0.0025, #ローン みずほ銀行ローンサイト諸経費より
