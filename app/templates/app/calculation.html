@@ -29,11 +29,11 @@
                       <p>物件価格（円）</p>
                       <div class="formpost" id="numdata" type="text">{% render_field form.price id="numdata" class="form-control" placeholder="物件価格" %}</div>
                       <p>修繕積立（円/月）</p>
-                      <div class="formpost">{% render_field form.RRF class="form-control disabled" placeholder="修繕積立" %}</div>
+                      <div class="formpost">{% render_field form.RRF id="numdata" class="form-control disabled" placeholder="修繕積立" %}</div>
                       <p>管理費（円/月）</p>
-                      <div class="formpost">{% render_field form.MMF class="form-control disabled" placeholder="管理費" %}</div>
+                      <div class="formpost">{% render_field form.MMF id="numdata" class="form-control disabled" placeholder="管理費" %}</div>
                       <p>その他（円/月）</p>
-                      <div class="formpost">{% render_field form.OMF class="form-control disabled" placeholder="その他" %}</div>
+                      <div class="formpost">{% render_field form.OMF id="numdata" class="form-control disabled" placeholder="その他" %}</div>
                   </td>
               </tr>
               <tr>
@@ -41,17 +41,17 @@
                   <td class="radio formpost">
                       <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
                       <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
-                      借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
-                      年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
+                      借入金（円）　{% render_field form.loan id="numdata" class="form-control" placeholder="ローン借入額" %}<br>
+                      年利（％）　　{% render_field form.interest id="numdata" class="form-control" placeholder="年利" %}<br>
                   </td>
               </tr>
               <tr>
                   <th scope="row" class="bg-info text-center">頭金</th>
-                  <td class="ml-4 mr-5 my-3 formpost">頭金（円）　　{% render_field form.down class="form-control" placeholder="頭金" %}</td>
+                  <td class="ml-4 mr-5 my-3 formpost">頭金（円）　　{% render_field form.down id="numdata" class="form-control" placeholder="頭金" %}</td>
               </tr>
               <tr>
                   <th scope="row" class="bg-info text-center">返済期間</th> 
-                  <td class="ml-4 mr-5 my-3 formpost">返済期間（年）　{% render_field form.repayment class="form-control" placeholder="返済期間" %}</td>
+                  <td class="ml-4 mr-5 my-3 formpost">返済期間（年）　{% render_field form.repayment id="numdata" class="form-control" placeholder="返済期間" %}</td>
               </tr>
           </tbody>
         </script>   
@@ -109,6 +109,9 @@
         <button type="button" class="btn btn-info mt-3 mb-5">シミュレーション結果を保存</button>
     </div>
 </div>
+
+{% block extra_js %}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     
       <script>
@@ -151,9 +154,44 @@
                 }
               }
             }]
-          },
+          }
         }
       });
       </script>
+
+
+
+
+function addFigure(numVal) {
+  if (numVal == ''){
+    return '';
+}
+// 大文字とカンマ、入力数値両側の空白を削除
+  numVal = toHalfWidth(numVal).replace(/, /g, "").trim();
+    if ( !/^[+|-]?(\d*)(\.\d+)?$/.test(numVal) ){
+      return numVal;
+    }
+
+    var numData = numVal.toString().split('.');
+    numData[0] = Number(numData[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return numData.join('.');
+}
+
+function delFigure(strVal){
+    return strVal.replace( /,/g , "" );
+}
+
+function toHalfWidth(strVal){
+    var halfVal = strVal.replace(/[！-～]/g,
+    function( tmpStr ) {
+        return String.fromCharCode( tmpStr.charCodeAt(0) - 0xFEE0 );
+        }
+    );
+    return halfVal;
+}
+
+var elm = document.getElementById('numdata');
+elm.addEventListener('blur', function(){ this.value = addFigure(this.value) }, false);
+elm.addEventListener('focus', function(){ this.value = delFigure(this.value) }, false);
 
 {%  endblock %}
