@@ -51,7 +51,7 @@
               </tr>
               <tr>
                   <th scope="row" class="bg-info text-center">返済期間</th> 
-                  <td class="ml-4 mr-5 my-3 formpost">返済期間（年）　{% render_field form.repayment id="numdata" class="form-control" placeholder="返済期間" %}</td>
+                  <td class="ml-4 mr-5 my-3 formpost">返済期間（年）　{% render_field form.term id="numdata" class="form-control" placeholder="返済期間" %}</td>
               </tr>
           </tbody>
         </script>   
@@ -103,36 +103,31 @@
 <div class="h5 mt-5">支払い金額推移</div>
 <div class="form-row text-center">
     <div class="col-12 text-center mt-3">
-        <!-- <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt=""> -->
+        // <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt="">
         <canvas id="myLineChart"></canvas>
-        
         <button type="button" class="btn btn-info mt-3 mb-5">シミュレーション結果を保存</button>
     </div>
 </div>
 
+{% endblock %}
 {% block extra_js %}
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
       <script>
-      var ctx = document.getElementById("myLineChart");
+      var ctx= document.getElementById("myLineChart");
       var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: {{ 
-              
-          }}
-          //  ['8月1日', '8月2日', '8月3日', '8月4日', '8月5日', '8月6日', '8月7日'],
+          labels: ['day1', 'day2', 'day3', 'day4', 'day5'],
           datasets: [
             {
-              label: '最高気温(度）',
-              data: [35, 34, 37, 35, 34, 35, 34, 25],
+              label: '最高気温（度）',
+              data: [35, 34, 37, 35, 34],
               borderColor: "rgba(255,0,0,1)",
               backgroundColor: "rgba(0,0,0,0)"
             },
             {
-              label: '最低気温(度）',
-              data: [25, 27, 27, 25, 26, 27, 25, 21],
+              label: '最低気温（度）',
+              data: [25, 27, 27, 25, 26],
               borderColor: "rgba(0,0,255,1)",
               backgroundColor: "rgba(0,0,0,0)"
             }
@@ -154,44 +149,42 @@
                 }
               }
             }]
-          }
+          },
         }
       });
       </script>
 
-
-
-
-function addFigure(numVal) {
-  if (numVal == ''){
-    return '';
-}
-// 大文字とカンマ、入力数値両側の空白を削除
-  numVal = toHalfWidth(numVal).replace(/, /g, "").trim();
-    if ( !/^[+|-]?(\d*)(\.\d+)?$/.test(numVal) ){
-      return numVal;
-    }
-
-    var numData = numVal.toString().split('.');
-    numData[0] = Number(numData[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return numData.join('.');
-}
-
-function delFigure(strVal){
-    return strVal.replace( /,/g , "" );
-}
-
-function toHalfWidth(strVal){
-    var halfVal = strVal.replace(/[！-～]/g,
-    function( tmpStr ) {
-        return String.fromCharCode( tmpStr.charCodeAt(0) - 0xFEE0 );
+      <script>
+        function addFigure(numVal) {
+          if (numVal == ''){
+            return  '',
+          }
+          numVal = toHalfWidth(numVal).replace(/,/g, "").trim();
+          if ( !/^[+|-]?(\d*)(\.\d+)?$/.test(numVal) ){
+              return numVal ;
+        　　}
+          var numData = numVal.toString().split('.');
+          numData[0] = Number(numData[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          return numData.join('.');
         }
-    );
-    return halfVal;
-}
 
-var elm = document.getElementById('numdata');
-elm.addEventListener('blur', function(){ this.value = addFigure(this.value) }, false);
-elm.addEventListener('focus', function(){ this.value = delFigure(this.value) }, false);
+        function delFigure(strVal){
+          return strVal.replace( /,/g , "" );
+        }
+        
+
+        function toHalfWidth(strVal){
+          var halfVal = strVal.replace(/[！-～]/g,
+            function( tmpStr ) {
+              return String.fromCharCode( tmpStr.charCodeAt(0) - 0xFEE0 );
+            }
+          );
+          return halfVal;
+        }
+        
+        var elm = document.getElementById('numdata');
+        elm.addEventListener('blur', function(){ this.value = addFigure(this.value) }, false);
+        elm.addEventListener('focus', function(){ this.value = delFigure(this.value) }, false);
+      </script>
 
 {%  endblock %}
