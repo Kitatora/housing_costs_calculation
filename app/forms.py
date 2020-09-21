@@ -9,5 +9,5 @@ class OwnHouseForm(forms.Form):
     loan = forms.IntegerField(label='ローン借入額', validators=[MinValueValidator(0), MaxValueValidator(1000000000)])
     interest = forms.FloatField(label='金利')
     down = forms.IntegerField(label='頭金', validators=[MinValueValidator(0), MaxValueValidator(1000000000)])
-    repayment = forms.IntegerField(label='返済期間', validators=[MinValueValidator(1), MaxValueValidator(50)])
+    term = forms.IntegerField(label='返済期間', validators=[MinValueValidator(1), MaxValueValidator(50)])
     # first_name = forms.CharField(max_length=30, label='姓')

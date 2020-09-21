@@ -5,186 +5,196 @@
 
 <div class="h5 mt-5">総額計算</div>
 <form method="post">
-    <table class="container" border="2" width="200px">
-        {% csrf_token %}
-        <script type="text/javascript" src="app/static/javascript/number.js">
-          <tbody>
-              <tr>
-                  <th scope="row" class="bg-info text-center">契約タイプ</th>
-                  <td class="radio formpost">
-                      <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
-                      <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
-                  </td>
-              </tr>
-              <tr>
-                  <th scope="row" class="bg-info text-center">物件タイプ</th>
-                  <td class="radio formpost">
-                      <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
-                      <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
-                  </td>
-              </tr>
-              <tr>
-                  <th scope="row" class="bg-info text-center">各種費用</th>
-                  <td class="data ml-4 mr-5 my-3">
-                      <p>物件価格（円）</p>
-                      <div class="formpost" id="numdata" type="text">{% render_field form.price id="numdata" class="form-control" placeholder="物件価格" %}</div>
-                      <p>修繕積立（円/月）</p>
-                      <div class="formpost">{% render_field form.RRF id="numdata" class="form-control disabled" placeholder="修繕積立" %}</div>
-                      <p>管理費（円/月）</p>
-                      <div class="formpost">{% render_field form.MMF id="numdata" class="form-control disabled" placeholder="管理費" %}</div>
-                      <p>その他（円/月）</p>
-                      <div class="formpost">{% render_field form.OMF id="numdata" class="form-control disabled" placeholder="その他" %}</div>
-                  </td>
-              </tr>
-              <tr>
-                  <th scope="row" class="bg-info text-center">ローン借入</th>
-                  <td class="radio formpost">
-                      <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
-                      <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
-                      借入金（円）　{% render_field form.loan id="numdata" class="form-control" placeholder="ローン借入額" %}<br>
-                      年利（％）　　{% render_field form.interest id="numdata" class="form-control" placeholder="年利" %}<br>
-                  </td>
-              </tr>
-              <tr>
-                  <th scope="row" class="bg-info text-center">頭金</th>
-                  <td class="ml-4 mr-5 my-3 formpost">頭金（円）　　{% render_field form.down id="numdata" class="form-control" placeholder="頭金" %}</td>
-              </tr>
-              <tr>
-                  <th scope="row" class="bg-info text-center">返済期間</th> 
-                  <td class="ml-4 mr-5 my-3 formpost">返済期間（年）　{% render_field form.term id="numdata" class="form-control" placeholder="返済期間" %}</td>
-              </tr>
-          </tbody>
-        </script>   
-    </table>
-    <div class="text-center mt-3">
-        <button type="submit" class="btn btn-info mt-3 mb-5">シミュレーション実行</button>
-    </div>
+  <table class="container" border="2" width="200px">
+    {% csrf_token %}
+    <tbody>
+      <tr>
+        <th scope="row" class="bg-info text-center">契約タイプ</th>
+        <td class="radio formpost">
+          <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
+          <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="bg-info text-center">物件タイプ</th>
+        <td class="radio formpost">
+          <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
+          <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="bg-info text-center">各種費用</th>
+        <td class="data ml-4 mr-5 my-3">
+          <p>物件価格（円）</p>
+          <div class="formpost" type="text">
+            {% render_field form.price class="form-control" placeholder="物件価格" %}</div>
+          <p>修繕積立（円/月）</p>
+          <div class="formpost">
+            {% render_field form.RRF class="form-control disabled" placeholder="修繕積立" %}</div>
+          <p>管理費（円/月）</p>
+          <div class="formpost">{% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
+          </div>
+          <p>その他（円/月）</p>
+          <div class="formpost">{% render_field form.OMF class="form-control disabled" placeholder="その他" %}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="bg-info text-center">ローン借入</th>
+        <td class="radio formpost">
+          <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
+          <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
+          借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
+          年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="bg-info text-center">頭金</th>
+        <td class="ml-4 mr-5 my-3 formpost">
+          頭金（円）　　{% render_field form.down class="form-control" placeholder="頭金" %}</td>
+      </tr>
+      <tr>
+        <th scope="row" class="bg-info text-center">返済期間</th>
+        <td class="ml-4 mr-5 my-3 formpost">
+          返済期間（年）　{% render_field form.term class="form-control" placeholder="返済期間" %}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-info mt-3 mb-5">シミュレーション実行</button>
+  </div>
 </form>
-    
+
 <div class="h5 mt-5">総額内訳</div>
 <table class="container text-center" border="2">
-    <tbody>
-        <tr class="bg-warning">
-            <th scope="row" rowspan="2"></th>
-            <th scope="row" colspan="4">各種費用</th>
-            <th scope="row" rowspan="2">ローン利息</th>
-            <th scope="row" rowspan="2">消費税</th>
-            <th scope="row" rowspan="2">総額</th>
-        </tr>
-        <tr class="bg-warning">
-            <th scope="row mx-4 my-4"">物件価格</th>
-            <th scope="row">修繕積立</th>
-            <th scope="row">管理費</th>
-            <th scope="row">その他</th>
-        </tr>
-        <tr class="mx-4 my-4">
-            <th scope="row">物件1</th>
-            <td class="mx-4 my-4">{{ total_price }}</td>
-            <td class="mx-4 my-4">{{ total_RRF }}</td>
-            <td class="mx-4 my-4">{{ total_MMF }}</td>
-            <td class="mx-4 my-4">{{ total_OMF }}</td>
-            <td class="mx-4 my-4">{{ total_interest }}</td>
-            <td class="mx-4 my-4">{{ Miscellaneous }}</td>
-            <td class="mx-4 my-4">{{ property_tax }}</td>
-        </tr>
-        <tr>
-            <th scope="row">物件2</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
+  <tbody>
+    <tr class="bg-warning">
+      <th scope="row" rowspan="2"></th>
+      <th scope="row" colspan="4">各種物件費用</th>
+      <th scope="row" rowspan="2">ローン利息</th>
+      <th scope="row" rowspan="2">消費税</th>
+      <th scope="row" rowspan="2">購入初期費</th>
+      <th scope="row" rowspan="2">ローン初期費</th>
+      <th scope="row" rowspan="2">固定資産税</th>
+      <th scope="row" rowspan="2">総額</th>
+    </tr>
+    <tr class="bg-warning">
+      <th scope="row mx-4 my-4"">物件価格</th>
+            <th scope=" row">修繕積立</th>
+      <th scope="row">管理費</th>
+      <th scope="row">その他</th>
+    </tr>
+    <tr class="mx-4 my-4">
+      <th scope="row">物件1</th>
+      <td class="mx-4 my-4">{{ total_price }}</td>
+      <td class="mx-4 my-4">{{ total_RRF }}</td>
+      <td class="mx-4 my-4">{{ total_MMF }}</td>
+      <td class="mx-4 my-4">{{ total_OMF }}</td>
+      <td class="mx-4 my-4">{{ total_interest }}</td>
+      <td class="mx-4 my-4">{{ vat }}</td>
+      <td class="mx-4 my-4">{{ miscellaneous }}</td>
+      <td class="mx-4 my-4">{{ miscellaneous_if_loan }}</td>
+      <td class="mx-4 my-4">{{ property_tax }}</td>
+      <td class="mx-4 my-4">{{ grand_total }}</td>
+    </tr>
+    <tr>
+      <th scope="row">物件2</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
 
 <div class="h5 mt-5">支払い金額推移</div>
 <div class="form-row text-center">
-    <div class="col-12 text-center mt-3">
-        // <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt="">
-        <canvas id="myLineChart"></canvas>
-        <button type="button" class="btn btn-info mt-3 mb-5">シミュレーション結果を保存</button>
-    </div>
+  <div class="col-12 text-center mt-3">
+    // <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt="">
+    <canvas id="myLineChart"></canvas>
+    <button type="button" class="btn btn-info mt-3 mb-5">シミュレーション結果を保存</button>
+  </div>
 </div>
 
 {% endblock %}
 {% block extra_js %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-      <script>
-      var ctx= document.getElementById("myLineChart");
-      var myLineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['day1', 'day2', 'day3', 'day4', 'day5'],
-          datasets: [
-            {
-              label: '最高気温（度）',
-              data: [35, 34, 37, 35, 34],
-              borderColor: "rgba(255,0,0,1)",
-              backgroundColor: "rgba(0,0,0,0)"
-            },
-            {
-              label: '最低気温（度）',
-              data: [25, 27, 27, 25, 26],
-              borderColor: "rgba(0,0,255,1)",
-              backgroundColor: "rgba(0,0,0,0)"
-            }
-          ],
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script>
+  var ctx = document.getElementById("myLineChart");
+  var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['day1', 'day2', 'day3', 'day4', 'day5'],
+      datasets: [
+        {
+          label: '最高気温（度）',
+          data: [35, 34, 37, 35, 34],
+          borderColor: "rgba(255,0,0,1)",
+          backgroundColor: "rgba(0,0,0,0)"
         },
-        options: {
-          title: {
-            display: true,
-            text: '気温（8月1日~8月7日）'
-          },
-          scales: {
-            yAxes: [{
-              ticks: {
-                suggestedMax: 40,
-                suggestedMin: 0,
-                stepSize: 10,
-                callback: function(value, index, values){
-                  return  value +  '度'
-                }
-              }
-            }]
-          },
+        {
+          label: '最低気温（度）',
+          data: [25, 27, 27, 25, 26],
+          borderColor: "rgba(0,0,255,1)",
+          backgroundColor: "rgba(0,0,0,0)"
         }
-      });
-      </script>
-
-      <script>
-        function addFigure(numVal) {
-          if (numVal == ''){
-            return  '',
-          }
-          numVal = toHalfWidth(numVal).replace(/,/g, "").trim();
-          if ( !/^[+|-]?(\d*)(\.\d+)?$/.test(numVal) ){
-              return numVal ;
-        　　}
-          var numData = numVal.toString().split('.');
-          numData[0] = Number(numData[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-          return numData.join('.');
-        }
-
-        function delFigure(strVal){
-          return strVal.replace( /,/g , "" );
-        }
-        
-
-        function toHalfWidth(strVal){
-          var halfVal = strVal.replace(/[！-～]/g,
-            function( tmpStr ) {
-              return String.fromCharCode( tmpStr.charCodeAt(0) - 0xFEE0 );
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: '気温（8月1日~8月7日）'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMax: 40,
+            suggestedMin: 0,
+            stepSize: 10,
+            callback: function (value, index, values) {
+              return value + '度'
             }
-          );
-          return halfVal;
-        }
-        
-        var elm = document.getElementById('numdata');
-        elm.addEventListener('blur', function(){ this.value = addFigure(this.value) }, false);
-        elm.addEventListener('focus', function(){ this.value = delFigure(this.value) }, false);
-      </script>
+          }
+        }]
+      },
+    }
+  });
+
+  // function addFigure(numVal) {
+  //   if (numVal == '') {
+  //     return '';
+  //   }
+  //   numVal = toHalfWidth(numVal).replace(/,/g, "").trim();
+  //   if (!/^[+|-]?(\d*)(\.\d+)?$/.test(numVal)) {
+  //     return numVal;
+  //   }
+  //   var numData = numVal.toString().split('.');
+  //   numData[0] = Number(numData[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  //   return numData.join('.');
+  // }
+
+  // function delFigure(strVal) {
+  //   return strVal.replace(/,/g, "");
+  // }
+
+  // function toHalfWidth(strVal) {
+  //   var halfVal = strVal.replace(/[！-～]/g,
+  //     function (tmpStr) {
+  //       return String.fromCharCode(tmpStr.charCodeAt(0) - 0xFEE0);
+  //     }
+  //   );
+  //   return halfVal;
+  // }
+
+  // var elm = document.getElementsByClassName('form-control');
+  // elm[0].addEventListener('blur', function () { this.value = addFigure(this.value) }, false);
+  // elm[0].addEventListener('focus', function () { this.value = delFigure(this.value) }, false);
+</script>
 
 {%  endblock %}
