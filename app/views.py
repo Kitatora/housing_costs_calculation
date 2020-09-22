@@ -54,20 +54,15 @@ class TopView(View):
         )
         m_term = term_info*12  # 返済回数(月数)
         m_interest = interest_info/12  # ローン利息(月利)
-        print(m_interest)
         price_info = price_info  # 物件価格
         total_RRF = RRF_info*m_term  # 修繕積立金/年
         total_MMF = MMF_info*m_term  # 管理費/年
         total_OMF = OMF_info*m_term  # その他費用/年
-        # total_interest = round(((m_interest(1+m_interest)**m_term)/((1+m_interest)**m_term-1))*loan_info-loan_info) #ローン利息総額
-        total_interest = price_info/10 #ローン利息総額
+        total_interest = round(((m_interest*(1+m_interest)**m_term)/((1+m_interest)**m_term-1))*loan_info)*m_term-loan_info #ローン利息総額
         vat = round(price_info*0.1)  # 消費税10%
         miscellaneous = round(price_info*0.001)  # 火災保険や登記非（一般的に物件価格の0.1%）
-        # ローン保険等（みずほ銀行ローン計算からテスト20回行った結果）
-        miscelleneous_if_loan = round(price_info*0.025)
+        miscelleneous_if_loan = round(price_info*0.025) # ローン保険等（みずほ銀行ローン計算からテスト20回行った結果）
         total_property_tax = round(price_info*0.004)*term_info  # 所得税/年
-        m_payment = (loan_info*m_interest*(1+m_interest)**m_term) / \
-            ((1+m_interest)**m_term-1)  # 元利均等返済における毎月返済額
 
         # p_li = []
         # for i in range(m_loan):

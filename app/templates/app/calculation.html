@@ -66,21 +66,22 @@
 </form>
 
 <div class="h5 mt-5">総額内訳</div>
-<table class="container text-center" border="2">
-  <tbody>
-    <tr class="bg-warning">
-      <th scope="row" rowspan="2"></th>
-      <th scope="row" colspan="4">各種物件費用</th>
-      <th scope="row" rowspan="2">ローン利息</th>
-      <th scope="row" rowspan="2">消費税</th>
-      <th scope="row" rowspan="2">購入初期費</th>
-      <th scope="row" rowspan="2">ローン初期費</th>
-      <th scope="row" rowspan="2">固定資産税</th>
-      <th scope="row" rowspan="2">総額</th>
+<section>
+  <table class="container text-center price-table" border="2">
+    <tbody>
+      <tr class="bg-warning">
+        <th scope="row" rowspan="2"></th>
+        <th scope="row" colspan="4">各種物件費用</th>
+        <th scope="row" rowspan="2">ローン利息</th>
+        <th scope="row" rowspan="2">消費税</th>
+        <th scope="row" rowspan="2">購入初期費</th>
+        <th scope="row" rowspan="2">ローン初期費</th>
+        <th scope="row" rowspan="2">固定資産税</th>
+        <th scope="row" rowspan="2">総額</th>
     </tr>
     <tr class="bg-warning">
-      <th scope="row mx-4 my-4"">物件価格</th>
-            <th scope=" row">修繕積立</th>
+      <th scope="row mx-4 my-4">物件価格</th>
+      <th scope="row">修繕積立</th>
       <th scope="row">管理費</th>
       <th scope="row">その他</th>
     </tr>
@@ -110,13 +111,14 @@
       <td></td>
       <td></td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</section>
 
 <div class="h5 mt-5">支払い金額推移</div>
 <div class="form-row text-center">
   <div class="col-12 text-center mt-3">
-    // <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt="">
+    <!-- <img src="http://placehold.jp/24/c1c1c1/993333/920x460.png" alt=""> -->
     <canvas id="myLineChart"></canvas>
     <button type="button" class="btn btn-info mt-3 mb-5">シミュレーション結果を保存</button>
   </div>
@@ -130,17 +132,17 @@
   var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['day1', 'day2', 'day3', 'day4', 'day5'],
+      labels: ['day1', 'day2', 'day3', 'day4', 'day5', 'day1', 'day2', 'day3', 'day4', 'day5'],
       datasets: [
         {
-          label: '最高気温（度）',
-          data: [35, 34, 37, 35, 34],
+          label: '支払い総額',
+          data: [35000000, 40000000, 70000000, 50000000, 75000000],
           borderColor: "rgba(255,0,0,1)",
           backgroundColor: "rgba(0,0,0,0)"
         },
         {
           label: '最低気温（度）',
-          data: [25, 27, 27, 25, 26],
+          data: [25000000, 27000000, 27000000, 25000000, 26000000],
           borderColor: "rgba(0,0,255,1)",
           backgroundColor: "rgba(0,0,0,0)"
         }
@@ -154,11 +156,11 @@
       scales: {
         yAxes: [{
           ticks: {
-            suggestedMax: 40,
+            // suggestedMax: 10000000,
             suggestedMin: 0,
-            stepSize: 10,
+            stepSize: 10000000,
             callback: function (value, index, values) {
-              return value + '度'
+              return value + '円'
             }
           }
         }]
