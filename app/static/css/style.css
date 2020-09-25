@@ -96,23 +96,23 @@ main {
     margin: 10px 20px;
 }
 
-.price-table{
+/* .price-table{
     overflow: scroll;
     margin: 50px auto 20px;
 	padding: 25px;
 	width: 300px;
 	height: 200px;
 	border: 2px solid #ccc;
-}
+} */
 
-section{
+/* section{
     overflow: scroll;
     margin: 50px auto 20px;
 	padding: 25px;
 	width: 300px;
 	height: 200px;
 	border: 2px solid #ccc;
-}
+} */
 
 .example {
     width: 50px;
@@ -121,7 +121,42 @@ section{
     background: skyblue;
 }
 
-table{
+.price-table{
     table-layout: fixed;
     width: 100%;
+}
+
+th{
+    padding: 10px;
+}
+
+#tabcontrol{
+    margin-bottom: 0rem;
+}
+
+#tabcontrol a {
+    display: inline-block;            /* インラインブロック化 */
+    border-width: 1px 1px 0px 1px;    /* 下以外の枠線を引く */
+    border-style: solid;              /* 枠線の種類：実線 */
+    border-color: black;              /* 枠線の色：黒色 */
+    border-radius: 0.5em 0.5em 0 0; /*枠線の左上角と右上角だけを丸く*/
+    padding: 0.5em 2em; 　　　　 /*内側の余白*/        
+    text-decoration: none;            /* リンクの下線を消す */
+    color: black;                     /* 文字色：黒色 */
+    background-color: white;          /* 背景色：白色 */
+    font-weight: bold;                /* 太字 */
+    position: relative;               /* JavaScriptでz-indexを調整するために必要 */
+}
+ /* ▼タブにマウスポインタが載った際(任意) */
+#tabcontrol a:hover {
+    text-decoration: underline;       /* 文字に下線を引く */
+}
+
+#tabbody div {
+    border: 1px solid black; /* 枠線：黒色の実線を1pxの太さで引く */
+    margin-top: -1px;        /*上側にあるタブと1pxだけ重ねるために「-1px」を指定*/
+    padding: 1em;            /* 内側の余白量 */
+    background-color: white; /* 背景色：白色 */
+    position: relative;      /* z-indexを調整するために必要 */
+    z-index: 0;              /* 重なり順序を「最も背面」にするため */
 }
