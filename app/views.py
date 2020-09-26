@@ -21,7 +21,7 @@ class TopView(View):
             }
         )
         return render(request, 'app/calculation.html', {
-            'form': form
+            'form': form,
         })
 
     def post(self, request, *args, **kwargs):
@@ -68,7 +68,13 @@ class TopView(View):
         variable = price_info+total_RRF+total_MMF+total_OMF+total_interest+total_property_tax
         p_li = []
         for i in range(term_info+1):
-            p_li.append(initial+(variable/term_info)*i)
+            p_li.append(str(initial+(variable/term_info)*i))
+        p_li = ','.join(p_li)
+
+        t_li = []
+        for i in range(term_info):
+            t_li.append(str(i+1))
+        t_li = ','.join(t_li)
 
         return render(request, 'app/calculation.html', {
             'form': form,
@@ -82,6 +88,8 @@ class TopView(View):
             'miscellaneous_if_loan': miscelleneous_if_loan,  # ローン みずほ銀行ローンサイト諸経費より
             'property_tax': total_property_tax,  # 固定資産税
             'grand_total': grand_total, #総計
+            'p_li': p_li,
+            't_li': t_li
         })
 
 

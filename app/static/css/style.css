@@ -22,6 +22,18 @@ main {
     box-shadow: 0 0.2rem 0.2rem 0 rgba(0,0,0,0.1);
 }
 
+.title-bg-1{
+    background-color: #e5ab47;
+}
+
+.title-bg-2{
+    background-color: #f8e352;
+}
+
+.title-bg-3{
+    background-color: #c8d627;
+}
+
 .button{
     width: 150px;
 }
@@ -139,7 +151,6 @@ th{
     border-width: 1px 1px 0px 1px;    /* 下以外の枠線を引く */
     border-style: solid;              /* 枠線の種類：実線 */
     border-color: black;              /* 枠線の色：黒色 */
-    border-radius: 0.5em 0.5em 0 0; /*枠線の左上角と右上角だけを丸く*/
     padding: 0.5em 2em; 　　　　 /*内側の余白*/        
     text-decoration: none;            /* リンクの下線を消す */
     color: black;                     /* 文字色：黒色 */
@@ -159,4 +170,9 @@ th{
     background-color: white; /* 背景色：白色 */
     position: relative;      /* z-indexを調整するために必要 */
     z-index: 0;              /* 重なり順序を「最も背面」にするため */
+    min-height: 100px;
 }
+
+#tabcontrol a:nth-child(1) { background-color: #e5ab47; } /* 1つ目のタブとその中身用の配色 */
+#tabcontrol a:nth-child(2) { background-color: #f8e352; } /* 2つ目のタブとその中身用の配色 */
+#tabcontrol a:nth-child(3) { background-color: #c8d627 }/* 3つ目のタブとその中身用の配色 */
