@@ -1,0 +1,86 @@
+<form>
+  <div class="form-check">
+      <input class="form-check-input" type="radio" name="maker" value="food" onclick="formSwitch()" checked>
+      <label class="form-check-label"> 好きな食べ物</label>
+  </div>
+  <div class="form-check">
+      <input class="form-check-input" type="radio" name="maker" value="place" onclick="formSwitch()">
+      <label class="form-check-label"> 好きな場所</label>
+  </div>
+
+  <div id="foodList">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="food" id="お寿司" name="place[]">
+      <label class="form-check-label"> お寿司</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="food" id="アイスクリーム" name="place[]">
+      <label class="form-check-label"> アイスクリーム</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="food" id="チーズケーキ" name="place[]">
+      <label class="form-check-label"> チーズケーキ</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="food" id="お団子" name="place[]">
+      <label class="form-check-label"> お団子</label>
+    </div>
+  </div>
+
+  <div id="placeList">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="place" id="自由が丘" name="place[]">
+      <label class="form-check-label"> 自由が丘</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="place" id="下北沢" name="place[]">
+      <label class="form-check-label"> 下北沢</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="place" id="吉祥寺" name="place[]">
+      <label class="form-check-label"> 吉祥寺</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="place" id="高円寺" name="place[]">
+      <label class="form-check-label"> 高円寺</label>
+    </div>
+  </div>
+</form>
+
+<!-- JavaScrip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script>
+function formSwitch() {
+    hoge = document.getElementsByName('maker')
+    if (hoge[0].checked) {
+        // 好きな食べ物が選択されたら下記を実行します
+        document.getElementById('foodList').style.display = "";
+        document.getElementById('placeList').style.display = "none";
+        var inputItem = document.getElementById("placeList").getElementsByTagName("input");
+        for(var i=0; i<inputItem.length; i++){
+        inputItem[i].checked = "";
+        }
+    } else if (hoge[1].checked) {
+        // 好きな場所が選択されたら下記を実行します
+        document.getElementById('foodList').style.display = "none";
+        var inputItem = document.getElementById("foodList").getElementsByTagName("input");
+        for(var i=0; i<inputItem.length; i++){
+        inputItem[i].checked = "";
+        }
+        document.getElementById('placeList').style.display = "";
+    } else {
+        document.getElementById('foodList').style.display = "none";
+        var inputItem = document.getElementById("foodList").getElementsByTagName("input");
+        for(var i=0; i<selectItem.length; i++){
+        inputItem[i].value = "";
+        }
+        document.getElementById('placeList').style.display = "none";
+        var inputItem = document.getElementById("placeList").getElementsByTagName("input");
+        for(var i=0; i<inputItem.length; i++){
+            inputItem[i].checked = "";
+        }
+    }
+}
+window.addEventListener('load', formSwitch());
+
+</script>

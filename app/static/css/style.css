@@ -160,7 +160,13 @@ th{
 }
  /* ▼タブにマウスポインタが載った際(任意) */
 #tabcontrol a:hover {
-    text-decoration: underline;       /* 文字に下線を引く */
+    text-decoration: underline;
+    background-color:        /* 文字に下線を引く */
+}
+
+#tabcontrol a.present{
+    border-bottom: 1px solid #fff;
+    background: #fff;
 }
 
 #tabbody div {
@@ -172,6 +178,8 @@ th{
     z-index: 0;              /* 重なり順序を「最も背面」にするため */
     min-height: 100px;
 }
+
+
 
 #tabcontrol a:nth-child(1) { background-color: #e5ab47; } /* 1つ目のタブとその中身用の配色 */
 #tabcontrol a:nth-child(2) { background-color: #f8e352; } /* 2つ目のタブとその中身用の配色 */

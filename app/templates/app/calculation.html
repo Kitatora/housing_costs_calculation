@@ -5,9 +5,9 @@
 
 <div class="h5 mt-5">総額計算</div>
   <p id="tabcontrol">
-    <a href="#tabpage1">タブ1</a>
-    <a href="#tabpage2">タブ2</a>
-    <a href="#tabpage3">タブ3</a>
+    <a href="#tabpage1" class="present">物件1</a>
+    <a href="#tabpage2">物件2</a>
+    <a href="#tabpage3">物件3</a>
   </p>
   <div id="tabbody">
     <!-- タブ1 -->
@@ -18,14 +18,14 @@
           <tbody>
             <tr>
               <th scope="row" class="title-bg-1 text-center">契約タイプ</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-1 text-center">物件タイプ</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
               </td>
@@ -50,7 +50,7 @@
             </tr>
             <tr>
               <th scope="row" class="title-bg-1 text-center">ローン借入</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
                 借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
@@ -76,6 +76,7 @@
         </p>
       </form>
     </div>
+
     <!-- タブ2情報 -->
     <div id="tabpage2">
       <form method="post">
@@ -84,14 +85,14 @@
           <tbody>
             <tr>
               <th scope="row" class="title-bg-2 text-center">契約タイプ</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-2 text-center">物件タイプ</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
               </td>
@@ -104,21 +105,20 @@
                 </p>
                 <div class="formpost" type="text">
                 </div>
-                <p>修繕積立（円/月）</p>
-                <div class="formpost">
+                <p>修繕積立（円/月）
                   {% render_field form.RRF class="form-control disabled" placeholder="修繕積立" %}
-                </div>
-                <p>管理費（円/月）</p>
-                <div class="formpost">{% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
-                </div>
-                <p>その他（円/月）</p>
-                <div class="formpost">{% render_field form.OMF class="form-control disabled" placeholder="その他" %}
-                </div>
+                </p>
+                <p>管理費（円/月）
+                  {% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
+                </p>
+                <p>その他（円/月）
+                  {% render_field form.OMF class="form-control disabled" placeholder="その他" %}
+                </p>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-2 text-center">ローン借入</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
                 借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
@@ -137,9 +137,9 @@
             </tr>
           </tbody>
         </table>
-        < class="text-center mt-3">
+        <p class="text-center mt-3">
           <button type="submit" class="btn btn-info mt-3 mb-5" id="simulation">シミュレーション実行</button>
-        </>
+        </p>
       </form>
     </div>
 
@@ -151,14 +151,14 @@
           <tbody>
             <tr>
               <th scope="row" class="title-bg-3 text-center">契約タイプ</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-3 text-center">物件タイプ</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
               </td>
@@ -166,23 +166,23 @@
             <tr>
               <th scope="row" class="title-bg-3 text-center">各種費用</th>
               <td class="data ml-4 mr-5 my-3">
-                <p>物件価格（円）</p>
-                <div class="formpost" type="text">
-                  {% render_field form.price class="form-control" placeholder="物件価格" %}</div>
-                <p>修繕積立（円/月）</p>
-                <div class="formpost">
+                <p>物件価格（円）
+                  {% render_field form.price class="form-control" placeholder="物件価格" %}
+                </p>
+                <p>修繕積立（円/月）
                   {% render_field form.RRF class="form-control disabled" placeholder="修繕積立" %}</div>
-                <p>管理費（円/月）</p>
-                <div class="formpost">{% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
-                </div>
-                <p>その他（円/月）</p>
-                <div class="formpost">{% render_field form.OMF class="form-control disabled" placeholder="その他" %}
-                </div>
+                </p>
+                <p>管理費（円/月）
+                  {% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
+                </p>
+                <p>その他（円/月）
+                  {% render_field form.OMF class="form-control disabled" placeholder="その他" %}
+                </p>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-3 text-center">ローン借入</th>
-              <td class="radio formpost">
+              <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
                 借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
@@ -243,16 +243,29 @@
     </tr>
     <tr>
       <th scope="row">物件2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="mx-4 my-4">{{ total_price }}</td>
+      <td class="mx-4 my-4">{{ total_RRF }}</td>
+      <td class="mx-4 my-4">{{ total_MMF }}</td>
+      <td class="mx-4 my-4">{{ total_OMF }}</td>
+      <td class="mx-4 my-4">{{ total_interest }}</td>
+      <td class="mx-4 my-4">{{ vat }}</td>
+      <td class="mx-4 my-4">{{ miscellaneous }}</td>
+      <td class="mx-4 my-4">{{ miscellaneous_if_loan }}</td>
+      <td class="mx-4 my-4">{{ property_tax }}</td>
+      <td class="mx-4 my-4">{{ grand_total }}</td>
+    </tr>
+    <tr>
+      <th scope="row">物件3</th>
+      <td class="mx-4 my-4">{{ total_price }}</td>
+      <td class="mx-4 my-4">{{ total_RRF }}</td>
+      <td class="mx-4 my-4">{{ total_MMF }}</td>
+      <td class="mx-4 my-4">{{ total_OMF }}</td>
+      <td class="mx-4 my-4">{{ total_interest }}</td>
+      <td class="mx-4 my-4">{{ vat }}</td>
+      <td class="mx-4 my-4">{{ miscellaneous }}</td>
+      <td class="mx-4 my-4">{{ miscellaneous_if_loan }}</td>
+      <td class="mx-4 my-4">{{ property_tax }}</td>
+      <td class="mx-4 my-4">{{ grand_total }}</td>
     </tr>
     </tbody>
   </table>
