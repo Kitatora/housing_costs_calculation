@@ -11,7 +11,6 @@
   </p>
   <div id="tabbody">
     <!-- タブ1 -->
-    <!-- 持ち家用 -->
     <div id="tabpage1">
       <form method="post">
         <table class="container" border="2" width="200px">
@@ -19,11 +18,14 @@
           <tbody>
             <tr>
               <th scope="row" class="title-bg-1 text-center">契約タイプ</th>
-              <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
+              <td>
+                <label class="ml-4 mr-5 my-3"><input type="radio" name="contract" value="hoge1" onclick="entryChange1();" checked="checked"/>持ち家</label>
+                <label class="ml-4 mr-5 my-3"><input type="radio" name="contract" value="hoge2" onclick="entryChange1()">賃貸</label>
               </td>
             </tr>
+          </tbody>
+          <!-- 持ち家用 -->
+          <tbody id="ownBox">
             <tr>
               <th scope="row" class="title-bg-1 text-center">物件タイプ</th>
               <td class="formpost">
@@ -46,7 +48,6 @@
                 <p>その他（円/月）
                   {% render_field form.OMF class="form-control disabled" placeholder="その他" %}
                 </p>
-                </div>
               </td>
             </tr>
             <tr>
@@ -71,9 +72,33 @@
               </td>
             </tr>
           </tbody>
+          <!-- 賃貸 -->
+          <tbody id="rentBox">
+            <tr>
+              <th scope="row" class="title-bg-1 text-center">各種費用</th>
+              <td class="data ml-4 mr-5 my-3">
+                <p>賃貸価格（円/月）
+                  {% render_field form.rent_fee class="form-control" placeholder="賃貸価格" %}
+                </p>
+                <p>管理費（円/月）
+                  {% render_field form.mnt class="form-control" placeholder="修繕積立" %}
+                </p>
+                <p>その他（円/月）
+                  {% render_field form.r_other class="form-control" placeholder="管理費" %}
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="title-bg-1 text-center">賃貸期間</th>
+              <td class="ml-4 mr-5 my-3 formpost">
+              　賃貸期間（年）{% render_field form.r_term class="form-control" placeholder="賃貸期間" %}
+              </td>
+            </tr>
+          </tbody>
+
         </table>
         <p class="text-center mt-3">
-          <button type="submit" class="btn btn-info mt-3 mb-5" id="simulation">シミュレーション実行</button>
+          <button type="submit" class="btn btn-info mt-3" id="simulation">シミュレーション実行</button>
         </p>
       </form>
     </div>
@@ -81,7 +106,8 @@
     <!-- タブ2情報 -->
     <div id="tabpage2">
       <form method="post">
-        <tbody id="f_own">
+        <table class="container" border="2" width="200px">
+          <tbody>
             <tr>
               <th scope="row" class="title-bg-2 text-center">契約タイプ</th>
               <td class="formpost">
@@ -274,51 +300,8 @@
 <div class="form-row text-center">
   <div class="col-12 text-center mt-3">
     <canvas id="myLineChart"></canvas>
-    <button type="button" class="btn btn-info mt-3 mb-5">シミュレーション結果を保存</button>
+    <button type="button" class="btn btn-info mt-3">シミュレーション結果を保存</button>
   </div>
-</div>
-
-<label>
-  <input class="js-check" type="radio" name="rs" value="1" onclick="formSwitch()" >特にない
-</label>
-
-<label>
-  <input class="js-check" type="radio" name="rs" value="1" onclick="formSwitch()">好きな音楽のジャンル
-</label>
-
-<span id="sample">
-  
-<div class="selecter">
-  <select id="changeSelect" name="hoge" onchange="entryChange2();">
-    <option value="select1">ジャンルを選んでください</option>
-    <option value="select2">ロック</option>
-    <option value="select3">ジャズ</option>
-    <option value="select4">ポップス</option>
-    <option value="select5">クラシック</option>
-    <option value="select6">ラテン</option>
-   </select>
-</div>
-  
-</span>
-
-<div id="Box">
-  <p>『ロック』の発祥は1950年代と言われています。アメリカに奴隷として連れてこられた黒人たちのアフリカ系黒人音楽が起源らしいです。</p>
-</div>
-
-<div id="Box2">
-  <p>『ジャズ』は、19世紀末から20世紀初頭にかけて、アメリカのニューオリーンズで西洋楽器を用いたヨーロッパ音楽の技術と独特なリズムの黒人音楽が融合したことにより生まれたとされます。</p>
-</div>
-
-<div id="Box3">
-  <p>『ポップス』は1950〜60年代に西洋でロックの派生として現代的形態で始まったポピュラー音楽です。</p>
-</div>
-
-<div id="Box4">
-  <p>『クラシック』の語源はラテン語のクラスにあり、直訳すると「古典音楽」です。一流・最高という意味もあります。</p>
-</div>
-
-<div id="Box5">
-  <p>『ラテン』は、中南米発祥の音楽の総称で中南米とカリブ海地域のラテン系の民族音楽のことを言います。</p>
 </div>
 
 {% endblock %}
@@ -405,95 +388,20 @@
   tabs[0].onclick();  
 
   // ラジオボタンを使ったフォームの切り替え
-var selecterBox = document.getElementById('sample');
-var selecter = document.getElementById('changeSelect');
-var item1 = document.getElementById('Box'); //Box：セレクタの説明文
-var item2 = document.getElementById('Box2');
-var item3 = document.getElementById('Box3');
-var item4 = document.getElementById('Box4');
-var item5 = document.getElementById('Box5');
-selecterBox.style.display = "none"; 
-item2.style.display = "none";
-item3.style.display = "none";
-item4.style.display = "none";
-item5.style.display = "none";
-item1.style.display = "none";
-//要素.style.display='none'で'その要素が非表示になる。
-//つまり、selectorBoxになにも選択されていない場合、selectorBoxには何も表示されない
-// document.getElementByIdのgetは、getElementByIdを使うのに必要な提携文と覚えて差し支えは無い
+  function entryChange1(){
+    radio = document.getElementsByName("contract")
+    if(radio[0].checked){
+      document.getElementById("ownBox").style.display="";
+      document.getElementById("rentBox").style.display="none";
+    } else if(radio[1].checked){
+      document.getElementById("ownBox").style.display="none";
+      document.getElementById("rentBox").style.display="";
+    } else {
+      document.getElementById("rentBox").style.display="none";
+    }
+  }
 
-function formSwitch() {
-  check = document.getElementsByClassName('js-check')
-  if (check[0].checked) {
-    selecterBox.style.display = "none";
-    item1.style.display = "none";
-    item2.style.display = "none";
-    item3.style.display = "none";
-    item4.style.display = "none";
-    item5.style.display = "none";
-    selecter.selectedIndex = 0;
-  // .checkedプロパティ。チェックボックスがチェックされていればTrueを返し、されていなければfalseを返す。
-  // getElementsBy系のメソッドは、idがhtml中に複数存在する場合、全ての要素をリストに格納する。
-  // つまり、check[0]とは「特に無い」ラジオボックスのことで、check[1]は「好きな音楽のジャンル」
-  // 上記は「特にない」を選択していた場合、全てのitemで非表示を選択するということ
-  } else if (check[1].checked) {
-    selecterBox.style.display = "block";
-  } else {
-    selecterBox.style.display = "none";
-    // 何も選択されていなければ非表示
-  } 
-}
-window.addEventListener('load', formSwitch());
-
-function entryChange2(){
-  if(document.getElementById('changeSelect')){
-  id = document.getElementById('changeSelect').value;
-
-  if(id == 'select2'){
-    item1.style.display = "block";
-    item2.style.display = "none";
-    item3.style.display = "none";
-    item4.style.display = "none";
-    item5.style.display = "none";
-  }
-  else if(id == 'select3'){
-    item1.style.display = "none";
-    item2.style.display = "block";
-    item3.style.display = "none";
-    item4.style.display = "none";
-    item5.style.display = "none";
-  }
-  else if(id == 'select4'){
-    item1.style.display = "none";
-    item2.style.display = "none";
-    item3.style.display = "block";
-    item4.style.display = "none";
-    item5.style.display = "none";
-  }
-  else if(id == 'select5'){
-    item1.style.display = "none";
-    item2.style.display = "none";
-    item3.style.display = "none";
-    item4.style.display = "block";
-    item5.style.display = "none";
-  }
-    else if(id == 'select6'){
-    item1.style.display = "none";
-    item2.style.display = "none";
-    item3.style.display = "none";
-    item4.style.display = "none";
-    item5.style.display = "block";
-  }
-  else{
-    item1.style.display = "none";
-    item2.style.display = "none";
-    item3.style.display = "none";
-    item4.style.display = "none";
-    item5.style.display = "none";
-  }
-}
-}
-
+  windows.onload = entryChange1;
 
 </script>
 {%  endblock %}

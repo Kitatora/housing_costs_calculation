@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from app.forms import OwnHouseForm
+from app.forms import OwnHouseForm, RentHouseForm
 
 
 class TopView(View):
@@ -92,6 +92,56 @@ class TopView(View):
             't_li': t_li
         })
 
-
 class AbtView(TemplateView):
     template_name = 'app/about.html'
+
+class RentTopView(View):
+    def get(self, request, *args, **kwargs):
+        form = RentHouseForm(
+            request.POST or None,
+            initial={
+                'rent_fee': "0",
+                'mnt': "0",
+                'r_other': "0",
+                'r_rent': "0",
+            }
+        )
+        return render(request, 'app/calculation.html', {
+            'form': form,
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = RentHouseForm(request.POST or None)
+        if form.is_valid():
+            rent_fee_info = form.cleaned_data['rent_fee'] #賃貸情報
+            mnt_info = form.cleaned_data['mnt'] #管理費情報
+            r_other = form.cleaned_data['r_other'] #賃貸その他情報
+            r_rent_info = form.cleaned_data['r_rent'] #賃貸期間情報
+        else:
+            print(form.errors)
+            return redirect('about')
+
+        form = RentHouseForm(
+            request.POST or None,
+            initial={
+                'rent_fee': "0",
+                'mnt': "0",
+                'r_other': "0",
+                'r_term': "0",
+            }
+        )
+
+        m_r_term = r_term*12
+        ttl_rent = rent_fee*m_r_term  #賃料総額
+        ttl_mnt = mnt*m_r_term
+        ttl_r_other = r_other*m_r_term
+        grand_ttl_rent = ttl_rent+ttl_mnt+ttl_r_other
+
+        return render(request, 'app/calculation.html', {
+            'form': form,
+            'ttl_rent': ttl_rent,
+            'ttl_mnt': ttl_mnt,
+            'ttl_r_other': ttl_r_other,
+            'total_OMF': total_OMF,
+            'grand_total': grand_ttl_rent #総計
+        })
