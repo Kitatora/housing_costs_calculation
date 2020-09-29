@@ -142,6 +142,5 @@ class RentTopView(View):
             'ttl_rent': ttl_rent,
             'ttl_mnt': ttl_mnt,
             'ttl_r_other': ttl_r_other,
-            'total_OMF': total_OMF,
             'grand_total': grand_ttl_rent #総計
         })
