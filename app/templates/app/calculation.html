@@ -40,7 +40,7 @@
                   {% render_field form.price class="form-control" placeholder="物件価格" %}
                 </p>
                 <p>修繕積立（円/月）
-                  {% render_field form.RRF class="form-control disabled" placeholder="修繕積立" %}
+                  {% render_field form.rent_fee class="form-control disabled" placeholder="修繕積立" %}
                 </p>
                 <p>管理費（円/月）
                   {% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
@@ -55,14 +55,14 @@
               <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
-                借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
+                借入金（円）　{% render_field form.loan class="form-control " placeholder="ローン借入額" %}<br>
                 年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-1 text-center">頭金</th>
               <td class="ml-4 mr-5 my-3 formpost">
-                頭金（円）　　{% render_field form.down class="form-control" placeholder="頭金" %}
+                頭金（円）　　{% render_field form.down class="form-control w-25" placeholder="頭金" %}
               </td>
             </tr>
             <tr>
@@ -78,7 +78,7 @@
               <th scope="row" class="title-bg-1 text-center">各種費用</th>
               <td class="data ml-4 mr-5 my-3">
                 <p>賃貸価格（円/月）
-                  {% render_field form.rent_fee class="form-control" placeholder="賃貸価格" %}
+                  {% render_field form.rent_fee class="form-control w-25" disabled id="" placeholder="賃貸価格" %}
                 </p>
                 <p>管理費（円/月）
                   {% render_field form.mnt class="form-control" placeholder="修繕積立" %}
@@ -91,147 +91,19 @@
             <tr>
               <th scope="row" class="title-bg-1 text-center">賃貸期間</th>
               <td class="ml-4 mr-5 my-3 formpost">
-              　賃貸期間（年）{% render_field form.r_term class="form-control" placeholder="賃貸期間" %}
+                賃貸期間（年）{% render_field form.r_term class="form-control" placeholder="賃貸期間" %}
               </td>
             </tr>
           </tbody>
-
         </table>
         <p class="text-center mt-3">
           <button type="submit" class="btn btn-info mt-3" id="simulation">シミュレーション実行</button>
         </p>
       </form>
     </div>
-
-    <!-- タブ2情報 -->
-    <div id="tabpage2">
-      <form method="post">
-        <table class="container" border="2" width="200px">
-          <tbody>
-            <tr>
-              <th scope="row" class="title-bg-2 text-center">契約タイプ</th>
-              <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-2 text-center">物件タイプ</th>
-              <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-2 text-center">各種費用</th>
-              <td class="data ml-4 mr-5 my-3">
-                <p>物件価格（円）
-                  {% render_field form.price class="form-control" placeholder="物件価格" %}
-                </p>
-                <div class="formpost" type="text">
-                </div>
-                <p>修繕積立（円/月）
-                  {% render_field form.RRF class="form-control disabled" placeholder="修繕積立" %}
-                </p>
-                <p>管理費（円/月）
-                  {% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
-                </p>
-                <p>その他（円/月）
-                  {% render_field form.OMF class="form-control disabled" placeholder="その他" %}
-                </p>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-2 text-center">ローン借入</th>
-              <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
-                借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
-                年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-2 text-center">頭金</th>
-              <td class="ml-4 mr-5 my-3 formpost">
-                頭金（円）　　{% render_field form.down class="form-control" placeholder="頭金" %}</td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-2 text-center">返済期間</th>
-              <td class="ml-4 mr-5 my-3 formpost">
-                返済期間（年）　{% render_field form.term class="form-control" placeholder="返済期間" %}</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="text-center mt-3">
-          <button type="submit" class="btn btn-info mt-3 mb-5" id="simulation">シミュレーション実行</button>
-        </p>
-      </form>
-    </div>
-
-    <!-- タグ3 -->
-    <div id="tabpage3">
-      <form method="post">
-        <table class="container" border="2" width="200px">
-          {% csrf_token %}
-          <tbody>
-            <tr>
-              <th scope="row" class="title-bg-3 text-center">契約タイプ</th>
-              <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">持ち家</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="contract">賃貸</label>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-3 text-center">物件タイプ</th>
-              <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-3 text-center">各種費用</th>
-              <td class="data ml-4 mr-5 my-3">
-                <p>物件価格（円）
-                  {% render_field form.price class="form-control" placeholder="物件価格" %}
-                </p>
-                <p>修繕積立（円/月）
-                  {% render_field form.RRF class="form-control disabled" placeholder="修繕積立" %}</div>
-                </p>
-                <p>管理費（円/月）
-                  {% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
-                </p>
-                <p>その他（円/月）
-                  {% render_field form.OMF class="form-control disabled" placeholder="その他" %}
-                </p>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-3 text-center">ローン借入</th>
-              <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
-                借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
-                年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-3 text-center">頭金</th>
-              <td class="ml-4 mr-5 my-3 formpost">
-                頭金（円）　　{% render_field form.down class="form-control" placeholder="頭金" %}</td>
-            </tr>
-            <tr>
-              <th scope="row" class="title-bg-3 text-center">返済期間</th>
-              <td class="ml-4 mr-5 my-3 formpost">
-                返済期間（年）　{% render_field form.term class="form-control" placeholder="返済期間" %}</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="text-center mt-3">
-          <button type="submit" class="btn btn-info mt-3 mb-5" id="simulation">シミュレーション実行</button>
-        </p>
-      </form>
-    </div>
   </div>
+
+<!-- タブ2、3コピペ場所 -->
 
 <div class="h5 mt-5">総額内訳</div>
 <section>
@@ -295,6 +167,7 @@
     </tbody>
   </table>
 </section>
+
 
 <div class="h5 mt-5">支払い金額推移</div>
 <div class="form-row text-center">
@@ -396,8 +269,6 @@
     } else if(radio[1].checked){
       document.getElementById("ownBox").style.display="none";
       document.getElementById("rentBox").style.display="";
-    } else {
-      document.getElementById("rentBox").style.display="none";
     }
   }
 
