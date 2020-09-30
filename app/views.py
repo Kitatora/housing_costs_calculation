@@ -20,6 +20,7 @@ class TopView(View):
                 'repayment': "0",
             }
         )
+
         return render(request, 'app/calculation.html', {
             'form': form,
         })
@@ -70,11 +71,15 @@ class TopView(View):
         for i in range(term_info+1):
             p_li.append(str(initial+(variable/term_info)*i))
         p_li = ','.join(p_li)
+        print(price_info)
+        print(total_RRF)
+        print(RRF_info)
 
         t_li = []
         for i in range(term_info):
             t_li.append(str(i+1))
         t_li = ','.join(t_li)
+        print(t_li)
 
         return render(request, 'app/calculation.html', {
             'form': form,

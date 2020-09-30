@@ -15,5 +15,6 @@ class OwnHouseForm(forms.Form):
     r_other = forms.IntegerField(label='その他', validators=[MinValueValidator(0), MaxValueValidator(100000)])
     r_term = forms.IntegerField(label='賃貸期間', validators=[MinValueValidator(1), MaxValueValidator(50)])
     # first_name = forms.CharField(max_length=30, label='姓')
+    print(price)
 
 

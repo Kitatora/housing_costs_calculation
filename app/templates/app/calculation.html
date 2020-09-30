@@ -36,39 +36,55 @@
             <tr>
               <th scope="row" class="title-bg-1 text-center">各種費用</th>
               <td class="data ml-4 mr-5 my-3">
-                <p>物件価格（円）
+                <label class="form-inline">
+                  <p>物件価格（円）</p>
                   {% render_field form.price class="form-control" placeholder="物件価格" %}
-                </p>
-                <p>修繕積立（円/月）
+                </label>
+                <label class="form-inline">
+                  <p>修繕積立（円/月）</p>
                   {% render_field form.RRF class="form-control" placeholder="修繕積立" %}
-                </p>
-                <p>管理費（円/月）
+                </label>
+                <label class="form-inline">
+                  <p>管理費（円/月）</p>
                   {% render_field form.MMF class="form-control" placeholder="管理費" %}
-                </p>
-                <p>その他（円/月）
+                </label>
+                <label class="form-inline">
+                  <p>その他（円/月）</p>
                   {% render_field form.OMF class="form-control" placeholder="その他" %}
-                </p>
+                </label>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-1 text-center">ローン借入</th>
               <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
-                借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
-                年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
+                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label>
+                <label class="form-inline">
+                  <p>借入金（円）</p>
+                  {% render_field form.loan class="form-control" placeholder="ローン借入額" %}
+                </label>
+                <label class="form-inline">  
+                  <p>年利（％）</p>
+                  {% render_field form.interest class="form-control" placeholder="年利" %}
+                </label>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-1 text-center">頭金</th>
               <td class="ml-4 mr-5 my-3 formpost">
-                頭金（円）　　{% render_field form.down class="form-control w-25" placeholder="頭金" %}
+                <label class="form-inline">
+                  <p>頭金（円）</p>
+                  {% render_field form.down class="form-control" placeholder="頭金" %}
+                </label>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-1 text-center">返済期間</th>
               <td class="ml-4 mr-5 my-3 formpost">
-                返済期間（年）　{% render_field form.term class="form-control" placeholder="返済期間" %}
+              <label class="form-inline">
+                <p>返済期間（年）</p>
+                {% render_field form.term class="form-control" placeholder="返済期間" %}
+              </label>
               </td>
             </tr>
           </tbody>
@@ -77,21 +93,27 @@
             <tr>
               <th scope="row" class="title-bg-1 text-center">各種費用</th>
               <td class="data ml-4 mr-5 my-3">
-                <p>賃貸価格（円/月）
-                  {% render_field form.rent_fee class="form-control w-25" id="" placeholder="賃貸価格" %}
-                </p>
-                <p>管理費（円/月）
+                <label class="form-inline">
+                  <p>賃貸価格（円/月）</p>
+                  {% render_field form.rent_fee class="form-control" placeholder="賃貸価格" %}
+                </label>
+                <label class="form-inline">
+                  <p>管理費（円/月）</p>
                   {% render_field form.mnt class="form-control" placeholder="修繕積立" %}
-                </p>
-                <p>その他（円/月）
+                </label>
+                <label class="form-inline">
+                  <p>その他（円/月）</p>
                   {% render_field form.r_other class="form-control" placeholder="管理費" %}
-                </p>
+                </label>
               </td>
             </tr>
             <tr>
               <th scope="row" class="title-bg-1 text-center">賃貸期間</th>
               <td class="ml-4 mr-5 my-3 formpost">
-                賃貸期間（年）{% render_field form.r_term class="form-control" placeholder="賃貸期間" %}
+                <label class="form-inline">
+                  <p>賃貸期間（年）</p>
+                  {% render_field form.r_term class="form-control" placeholder="賃貸期間" %}
+                </label>
               </td>
             </tr>
           </tbody>
@@ -173,7 +195,7 @@
 <div class="form-row text-center">
   <div class="col-12 text-center mt-3">
     <canvas id="myLineChart"></canvas>
-    <button type="button" class="btn btn-info mt-3">シミュレーション結果を保存</button>
+    <button type="submit" class="btn btn-info mt-3">シミュレーション結果を保存</button>
   </div>
 </div>
 
