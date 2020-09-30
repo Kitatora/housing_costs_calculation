@@ -40,13 +40,13 @@
                   {% render_field form.price class="form-control" placeholder="物件価格" %}
                 </p>
                 <p>修繕積立（円/月）
-                  {% render_field form.rent_fee class="form-control disabled" placeholder="修繕積立" %}
+                  {% render_field form.RRF class="form-control" placeholder="修繕積立" %}
                 </p>
                 <p>管理費（円/月）
-                  {% render_field form.MMF class="form-control disabled" placeholder="管理費" %}
+                  {% render_field form.MMF class="form-control" placeholder="管理費" %}
                 </p>
                 <p>その他（円/月）
-                  {% render_field form.OMF class="form-control disabled" placeholder="その他" %}
+                  {% render_field form.OMF class="form-control" placeholder="その他" %}
                 </p>
               </td>
             </tr>
@@ -55,7 +55,7 @@
               <td class="formpost">
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
                 <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label><br>
-                借入金（円）　{% render_field form.loan class="form-control " placeholder="ローン借入額" %}<br>
+                借入金（円）　{% render_field form.loan class="form-control" placeholder="ローン借入額" %}<br>
                 年利（％）　　{% render_field form.interest class="form-control" placeholder="年利" %}<br>
               </td>
             </tr>
@@ -78,7 +78,7 @@
               <th scope="row" class="title-bg-1 text-center">各種費用</th>
               <td class="data ml-4 mr-5 my-3">
                 <p>賃貸価格（円/月）
-                  {% render_field form.rent_fee class="form-control w-25" disabled id="" placeholder="賃貸価格" %}
+                  {% render_field form.rent_fee class="form-control w-25" id="" placeholder="賃貸価格" %}
                 </p>
                 <p>管理費（円/月）
                   {% render_field form.mnt class="form-control" placeholder="修繕積立" %}
