@@ -17,7 +17,11 @@ class TopView(View):
                 'loan': "0",
                 'interest': "0",
                 'down': "0",
-                'repayment': "0",
+                'term': "0",
+                'rent_fee': "0",
+                'mnt': "0",
+                'r_other': "0",
+                'r_term': "0",
             }
         )
 
@@ -36,9 +40,14 @@ class TopView(View):
             interest_info = form.cleaned_data['interest']/100  # ローン利率（年利）
             down_info = form.cleaned_data['down']
             term_info = form.cleaned_data['term']  # 年数
+            rent_info = form.cleaned_data['rent_fee']  # 賃貸価格
+            mnt_info = form.cleaned_data['mnt']  # 管理費(メンテ)
+            r_other_info = form.cleaned_data['r_other']  # その他
+            r_term_info = form.cleaned_data['r_term']  # 賃貸期間
         else:
             print(form.errors)
-            return redirect('about')
+            return redirect('about') 
+            # 数値検証がエラーとなった場合、aboutを返す
 
         form = OwnHouseForm(
             request.POST or None,
@@ -50,9 +59,14 @@ class TopView(View):
                 'loan': "0",
                 'interest': "0",
                 'down': "0",
-                'repayment': "0",
+                'term': "0",
+                'rent_fee': "0",
+                'mnt': "0",
+                'r_other': "0",
+                'r_term': "0",
             }
         )
+        # 戸建て計算
         m_term = term_info*12  # 返済回数(月数)
         m_interest = interest_info/12  # ローン利息(月利)
         price_info = price_info  # 物件価格
@@ -71,15 +85,18 @@ class TopView(View):
         for i in range(term_info+1):
             p_li.append(str(initial+(variable/term_info)*i))
         p_li = ','.join(p_li)
-        print(price_info)
-        print(total_RRF)
-        print(RRF_info)
-
         t_li = []
         for i in range(term_info):
             t_li.append(str(i+1))
         t_li = ','.join(t_li)
-        print(t_li)
+
+        # 賃貸計算
+        r_m_term = r_term*12 #賃貸期間（月）
+        total_rent_fee = rent_fee*r_term #賃貸期間（月）
+        total_mnt = mnt*r_m_term #賃貸期間（月）
+        total_r_other = r_m_other*r_term #賃貸期間（月）
+        r_initial = rent_fee*2#敷金礼金(1ヶ月ずつ)
+        grand_r_total = total_rent_fee+total_mnt+total_r_other+r_initial
 
         return render(request, 'app/calculation.html', {
             'form': form,
@@ -99,3 +116,6 @@ class TopView(View):
 
 class AbtView(TemplateView):
     template_name = 'app/about.html'
+
+# class View(View):
+#     get(self, request, *args, **kwargs):

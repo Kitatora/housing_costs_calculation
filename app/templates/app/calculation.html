@@ -24,13 +24,15 @@
               </td>
             </tr>
           </tbody>
+        </table>
           <!-- 持ち家用 -->
-          <tbody id="ownBox">
+        <table class="container" id="ownBox" border="2" width="200px">
+          <tbody>
             <tr>
               <th scope="row" class="title-bg-1 text-center">物件タイプ</th>
               <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">戸建て</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="housing">マンション</label>
+                <label class="ml-4 mr-5 my-3"><input type="radio" name="housing" onclick="deactivationInput1()">戸建て</label>
+                <label class="ml-4 mr-5 my-3"><input type="radio" name="housing" onclick="deactivationInput1()">マンション</label>
               </td>
             </tr>
             <tr>
@@ -38,34 +40,34 @@
               <td class="data ml-4 mr-5 my-3">
                 <label class="form-inline">
                   <p>物件価格（円）</p>
-                  {% render_field form.price class="form-control" placeholder="物件価格" %}
+                  {% render_field form.price class="form-control" id="price" placeholder="物件価格" %}
                 </label>
                 <label class="form-inline">
                   <p>修繕積立（円/月）</p>
-                  {% render_field form.RRF class="form-control" placeholder="修繕積立" %}
+                  {% render_field form.RRF class="form-control" id="RRF" placeholder="修繕積立" %}
                 </label>
                 <label class="form-inline">
                   <p>管理費（円/月）</p>
-                  {% render_field form.MMF class="form-control" placeholder="管理費" %}
+                  {% render_field form.MMF class="form-control" id="MMF" placeholder="管理費" %}
                 </label>
                 <label class="form-inline">
                   <p>その他（円/月）</p>
-                  {% render_field form.OMF class="form-control" placeholder="その他" %}
+                  {% render_field form.OMF class="form-control" id="OMF" placeholder="その他" %}
                 </label>
               </td>
             </tr>
             <tr>
-              <th scope="row" class="title-bg-1 text-center">ローン借入</th>
+              <th scope="row" class="title-bg-1  text-center">ローン借入</th>
               <td class="formpost">
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">有</label>
-                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan">無</label>
+                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan" onclick="deactivationInput2()">有</label>
+                <label class="ml-4 mr-5 my-3"><input type="radio" name="loan" onclick="deactivationInput2()">無</label>
                 <label class="form-inline">
                   <p>借入金（円）</p>
-                  {% render_field form.loan class="form-control" placeholder="ローン借入額" %}
+                  {% render_field form.loan class="form-control" placeholder="ローン借入額" id="loan" %}
                 </label>
                 <label class="form-inline">  
                   <p>年利（％）</p>
-                  {% render_field form.interest class="form-control" placeholder="年利" %}
+                  {% render_field form.interest class="form-control" placeholder="年利" id="interest" %}
                 </label>
               </td>
             </tr>
@@ -88,35 +90,35 @@
               </td>
             </tr>
           </tbody>
+        </table>
           <!-- 賃貸 -->
-          <tbody id="rentBox">
-            <tr>
+        <table class="container rentBox-style " id="rentBox" border="2" width="200px">
+          <tr>
+            <tbody>
               <th scope="row" class="title-bg-1 text-center">各種費用</th>
-              <td class="data ml-4 mr-5 my-3">
-                <label class="form-inline">
-                  <p>賃貸価格（円/月）</p>
-                  {% render_field form.rent_fee class="form-control" placeholder="賃貸価格" %}
-                </label>
-                <label class="form-inline">
-                  <p>管理費（円/月）</p>
-                  {% render_field form.mnt class="form-control" placeholder="修繕積立" %}
-                </label>
-                <label class="form-inline">
-                  <p>その他（円/月）</p>
-                  {% render_field form.r_other class="form-control" placeholder="管理費" %}
-                </label>
-              </td>
-            </tr>
-            <tr>
+                <td class="data ml-4 mr-5 my-3">
+                  <label class="form-inline">
+                    <p>賃貸価格（円/月）</p>
+                    {% render_field form.rent_fee class="form-control" id="rent_fee" placeholder="賃貸価格" %}
+                  </label>
+                  <label class="form-inline">
+                    <p>管理費（円/月）</p>
+                    {% render_field form.mnt class="form-control" id="mnt" placeholder="修繕積立" %}
+                  </label>
+                  <label class="form-inline">
+                    <p>その他（円/月）</p>
+                    {% render_field form.r_other class="form-control" id="r_other" placeholder="管理費" %}
+                  </label>
+                </td>
               <th scope="row" class="title-bg-1 text-center">賃貸期間</th>
               <td class="ml-4 mr-5 my-3 formpost">
                 <label class="form-inline">
                   <p>賃貸期間（年）</p>
-                  {% render_field form.r_term class="form-control" placeholder="賃貸期間" %}
+                  {% render_field form.r_term class="form-control" id="r_term" placeholder="賃貸期間" %}
                 </label>
               </td>
-            </tr>
-          </tbody>
+            </tbody>
+          </tr>
         </table>
         <p class="text-center mt-3">
           <button type="submit" class="btn btn-info mt-3" id="simulation">シミュレーション実行</button>
@@ -131,7 +133,7 @@
 <section>
   <table class="container text-center price-table" border="2">
     <tbody>
-      <tr class="bg-warning">
+      <tr class="rslt-title">
         <th scope="row" rowspan="2"></th>
         <th scope="row" colspan="4">各種物件費用</th>
         <th scope="row" rowspan="2">ローン利息</th>
@@ -141,7 +143,7 @@
         <th scope="row" rowspan="2">固定資産税</th>
         <th scope="row" rowspan="2">総額</th>
     </tr>
-    <tr class="bg-warning">
+    <tr class="rslt-title">
       <th scope="row mx-4 my-4">物件価格</th>
       <th scope="row">修繕積立</th>
       <th scope="row">管理費</th>
@@ -255,6 +257,7 @@
     }
   });
 
+
   // タブの切り替える
   // A.対象要素を得る
   var tabs = document.getElementById('tabcontrol').getElementsByTagName('a');
@@ -290,11 +293,159 @@
       document.getElementById("rentBox").style.display="none";
     } else if(radio[1].checked){
       document.getElementById("ownBox").style.display="none";
-      document.getElementById("rentBox").style.display="";
+      document.getElementById("rentBox").style.display="inline-block";
     }
   }
 
-  windows.onload = entryChange1;
+// 入力フォーム活性・非活性
+// 持ち家or賃貸
+function deactivationInput3(){
+  var activation = document.getElementsByName("contract");
+  if(activation[0].checked){
+    document.getElementById("price").removeAttribute("disabled");
+    document.getElementById("RMF").removeAttribute("disabled");
+    document.getElementById("MMF").removeAttribute("disabled");
+    document.getElementById("OMF").removeAttribute("disabled");
+    document.getElementById("loan").removeAttribute("disabled");
+    document.getElementById("interest").removeAttribute("disabled");
+    document.getElementById("down").removeAttribute("disabled");
+    document.getElementById("term").removeAttribute("disabled");
+    document.getElementById("rent-fee").setAttribute("disabled", "disabled");
+    document.getElementById("mnt").setAttribute("disabled", "disabled");
+    document.getElementById("r_other").setAttribute("disabled", "disabled");
+    document.getElementById("r_term").setAttribute("disabled", "disabled");
+  }
+  if(activation[1].checked){
+    document.getElementById("price").setAttribute("disabled", "disabled");
+    document.getElementById("RMF").setAttribute("disabled", "disabled");
+    document.getElementById("MMF").setAttribute("disabled", "disabled");
+    document.getElementById("OMF").setAttribute("disabled", "disabled");
+    document.getElementById("loan").setAttribute("disabled", "disabled");
+    document.getElementById("interest").setAttribute("disabled", "disabled");
+    document.getElementById("down").setAttribute("disabled", "disabled");
+    document.getElementById("term").setAttribute("disabled", "disabled");
+    document.getElementById("rent-fee").removeAttribute("disabled");
+    document.getElementById("mnt").removeAttribute("disabled");
+    document.getElementById("r_other").removeAttribute("disabled");
+    document.getElementById("r_term").removeAttribute("disabled");
+  }
+}
+
+// 戸建てorマンション
+function deactivationInput1(){
+  var activation = document.getElementsByName("housing");
+  if(activation[0].checked){
+    document.getElementById("RRF").removeAttribute("disabled");
+    document.getElementById("MMF").removeAttribute("disabled");
+  }
+  if(activation[1].checked){
+    document.getElementById("RRF").setAttribute("disabled", "disabled");
+    document.getElementById("MMF").setAttribute("disabled", "disabled");
+  }
+}
+
+// ローン借入
+function deactivationInput2(){
+  var activation = document.getElementsByName("loan");
+  if(activation[0].checked){
+    document.getElementById("loan").removeAttribute("disabled");
+    document.getElementById("interest").removeAttribute("disabled");
+  }
+  if(activation[1].checked){
+    document.getElementById("loan").setAttribute("disabled", "disabled");
+    document.getElementById("interest").setAttribute("disabled", "disabled");
+  }
+}
+
+// FetchAPI
+//CSRF対策
+const getCookie = name => {
+    if (document.cookie && document.cookie !== '') {
+        for (const cookie of document.cookie.split(';')) {
+            const [key, value] = cookie.trim().split('=');
+            if (key === name) {
+                return decodeURIComponent(value);
+            }
+        }
+    }
+};
+const csrftoken = getCookie('csrftoken');
+
+// 記事追加
+const addBlog = document.getElementById('add_blog');
+addBlog.addEventListener('submit', e => {
+    e.preventDefault();
+    const url = '{% url "add" %}';
+    const post_title = document.getElementById('post_title');
+    // URLのクエリパラメータを管理
+    const body = new URLSearchParams();
+    body.append('title', post_title.value);
+
+    fetch(url, {
+        method: 'POST',
+        body: body,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+            'X-CSRFToken': csrftoken,
+        }
+    }).then(response => {
+        // JSON形式に変換
+        return response.json();
+    }).then(response => {
+        // フォームをクリア
+        post_title.value = '';
+        // 追加するエレメント（HTMLやXMLにおける要素（タグ））
+        const postArea = document.getElementById('posts');
+        const element  = Object.assign(document.createElement('div'), {className: 'col-4 mb-3'});
+        const element2  = Object.assign(document.createElement('div'), {className: 'card'});
+        const element3  = Object.assign(document.createElement('div'), {className: 'card-body', textContent: response.title});
+        element.appendChild(element2);
+        element2.appendChild(element3);
+        // 最後に追加
+        postArea.insertBefore(element, postArea.lastChild.nextSibling);
+    }).catch(error => {
+        console.log(error);
+    });
+});
+
+// 記事検索
+const searchBlog = document.getElementById('search_blog');
+searchBlog.addEventListener('submit', e => {
+    e.preventDefault();
+    const url = '{% url "search" %}';
+    const search_title = document.getElementById('search_title');
+    // URLのクエリパラメータを管理
+    const body = new URLSearchParams();
+    body.append('title', search_title.value);
+
+    fetch(url, {
+        method: 'POST',
+        body: body,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+            'X-CSRFToken': csrftoken,
+        }
+    }).then(response => {
+        // JSON形式に変換
+        return response.json();
+    }).then(response => {
+        // フォームをクリア
+        search_title.value = '';
+        // 検索するエレメント
+        const postArea = document.getElementById('posts');
+        postArea.innerHTML = '';
+        for (const title of response.title_list) {
+            const element  = Object.assign(document.createElement('div'), {className: 'col-4 mb-3'});
+            const element2  = Object.assign(document.createElement('div'), {className: 'card'});
+            const element3  = Object.assign(document.createElement('div'), {className: 'card-body', textContent: title});
+            element.appendChild(element2);
+            element2.appendChild(element3);
+            postArea.appendChild(element);
+        }
+    }).catch(error => {
+        console.log(error);
+    });
+});
 
 </script>
 {%  endblock %}

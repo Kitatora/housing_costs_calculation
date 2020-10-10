@@ -22,16 +22,43 @@ main {
     box-shadow: 0 0.2rem 0.2rem 0 rgba(0,0,0,0.1);
 }
 
+#tabcontrol a:hover {
+    text-decoration: underline;
+    background-color:        /* 文字に下線を引く */
+}
+
+#tabcontrol a.present{
+    border-bottom: 1px solid #fff;
+    background: #fff;
+}
+
+#tabbody div {
+    border: 1px solid black; /* 枠線：黒色の実線を1pxの太さで引く */
+    margin-top: -1px;        /*上側にあるタブと1pxだけ重ねるために「-1px」を指定*/
+    /* padding: 1em;            内側の余白量 */
+    background-color: white; /* 背景色：白色 */
+    position: relative;      /* z-indexを調整するために必要 */
+    z-index: 0;              /* 重なり順序を「最も背面」にするため */
+    min-height: 100px;
+}
+
+#tabcontrol a:nth-child(1) { background-color: #fffeae; } /* 1つ目のタブとその中身用の配色 */
+#tabcontrol a:nth-child(2) { background-color: #95bfe7; } /* 2つ目のタブとその中身用の配色 */
+#tabcontrol a:nth-child(3) { background-color: #ffd6b0; }/* 3つ目のタブとその中身用の配色 */
+
 .title-bg-1{
-    background-color: #e5ab47;
+    background-color: #fffeae;
+    width: 14rem;
 }
 
 .title-bg-2{
-    background-color: #f8e352;
+    background-color: #95bfe7;
+    width: 14rem;
 }
 
 .title-bg-3{
-    background-color: #c8d627;
+    background-color: #ffd6b0;
+    width: 14rem;
 }
 
 .button{
@@ -44,6 +71,7 @@ main {
     font-weight: bold;
     padding: 20px;
 }
+
 
 .profile_table{
     width: 100%;
@@ -117,6 +145,10 @@ main {
 	border: 2px solid #ccc;
 } */
 
+.rslt-title{
+    background-color: #edef9c;
+}
+
 /* section{
     overflow: scroll;
     margin: 50px auto 20px;
@@ -159,28 +191,87 @@ th{
     position: relative;               /* JavaScriptでz-indexを調整するために必要 */
 }
  /* ▼タブにマウスポインタが載った際(任意) */
-#tabcontrol a:hover {
-    text-decoration: underline;
-    background-color:        /* 文字に下線を引く */
+
+.rentBox-style{
+    display: none;
+    padding: 0;
 }
 
-#tabcontrol a.present{
-    border-bottom: 1px solid #fff;
-    background: #fff;
+.rent-table{
+    width: 500px;
+    margin: 0;
 }
 
-#tabbody div {
-    border: 1px solid black; /* 枠線：黒色の実線を1pxの太さで引く */
-    margin-top: -1px;        /*上側にあるタブと1pxだけ重ねるために「-1px」を指定*/
-    padding: 1em;            /* 内側の余白量 */
-    background-color: white; /* 背景色：白色 */
-    position: relative;      /* z-indexを調整するために必要 */
-    z-index: 0;              /* 重なり順序を「最も背面」にするため */
-    min-height: 100px;
+.navbar-dark .navbar-toggler {
+  color: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+.navbar-dark .navbar-toggler-icon {
+  background-image:none; /* この行で背景画像を無効化 */
+  background-color: #fff;
+  width: 30px;
+  height: 2px;
+  display: block;
+  position: absolute;
+  transition: ease .5s;
 }
 
+/* 3本のバーそれぞれの座標を設定 */
+.navbar-toggler-icon:nth-of-type(1) {top:7px;}
+.navbar-toggler-icon:nth-of-type(2) {top:14px;}
+.navbar-toggler-icon:nth-of-type(3) {top:21px;}
 
+/* メニューが開いている時の　3本のバーそれぞれの座標および角度を設定 */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(1) {
+top:13px;
+transform: rotate(45deg);
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(2) {
+opacity: 0;
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(3) {
+top:13px;
+transform: rotate(-45deg);
+}
 
-#tabcontrol a:nth-child(1) { background-color: #e5ab47; } /* 1つ目のタブとその中身用の配色 */
-#tabcontrol a:nth-child(2) { background-color: #f8e352; } /* 2つ目のタブとその中身用の配色 */
-#tabcontrol a:nth-child(3) { background-color: #c8d627 }/* 3つ目のタブとその中身用の配色 */
+/* ハンバーガーアイコン */
+.navbar-dark .navbar-toggler {
+    color: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 0px;
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+.navbar-dark .navbar-toggler-icon {
+    background-image:none; /* この行で背景画像を無効化 */
+    background-color: #fff;
+    width: 30px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    transition: ease .5s;
+}
+  /* 3本のバーそれぞれの座標を設定 */
+.navbar-toggler-icon:nth-of-type(1) {top:7px;}
+.navbar-toggler-icon:nth-of-type(2) {top:14px;}
+.navbar-toggler-icon:nth-of-type(3) {top:21px;}
+
+  /* メニューが開いている時の　3本のバーそれぞれの座標および角度を設定 */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(1) {
+top:13px;
+transform: rotate(45deg);
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(2) {
+opacity: 0;
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-of-type(3) {
+top:13px;
+transform: rotate(-45deg);
+}
